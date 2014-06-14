@@ -1,11 +1,11 @@
-<div class="home">
+<!-- <div class="home">
 	<div class="wrapper">
 		<div class="margin left">
 			<h2 class="main-header">Take a short quiz to find out where you stand</h2>
 		</div>
 		<div class="right">Display Result or time here</div>
 	</div>
-</div>
+</div> -->
 <div class="bg">
 	<div class="wrapper">
 		<div class="quiz-one">
@@ -102,26 +102,5 @@
 			</div>
 			<div class="quiz-start">Click to Start</div>
 		</div>
-	</div>
-</div>
-<div class="home">
-	<div class="wrapper more-quizzes">
-		<div class="margin">
-			<h2 class="main-header">More Quizzes</h2>
-		</div>
-
-		<div class="quiz left">
-			<h4 class="quiz-name">Are you a responsible Citizen?</h4>
-			<div class="teaser-graphics"> XYXYX</div>
-		</div>
-		<div class="quiz left">
-			<h4 class="quiz-name">How well do you know World Geography?</h4>
-			<div class="teaser-graphics"> XYXYX</div>
-		</div>
-		<div class="quiz left">
-			<h4 class="quiz-name">How informed are you on racially-offensive terms?</h4>
-			<div class="teaser-graphics"> XYXYX</div>
-		</div>
-
 	</div>
 </div>

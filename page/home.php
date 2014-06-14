@@ -1,153 +1,60 @@
-<div id="welcome-msg" class="home" style="height: 800px;">
-	<div class="wrapper">
-		<div class="parawrap">
-			<p id="firstline"></p>
-			<p id="secondline"></p>
-			<p id="thirdline">
-				<a href="#/who-do-you-want-to-be-friends-with"><span class="curb"></span> <span class="round" style="display: none;">&#8594;</span></a>
-			</p>
-		</div>
-	</div>
+<div class="nav">
+	
+	<h1>Categories</h1>	
+     <ul class="basic">
+     	<li data-href="aaaa">Racial Slurs</li>
+     	<li data-href="aaaa">Food</li>
+     	<li data-href="aaaa">LifeStyle</li>
+     	<li data-href="aaaa">History</li>
+     	<li data-href="aaaa">Facts</li>
+     </ul>
 </div>
-
-<div class="home">
-	<div class="wrapper">
-		<div class="margin left">
-			<h2 class="main-header">Logo</h2>
-		</div>
-		<div class="right">.</div>
-	</div>
+<div class="characters">
+	<div id="kid-one"></div>
+	<div id="creepy-guy" style="top: 110px;"></div>
 </div>
-<div id="central-wrap" class="bg">
-	<div id="quiz-pane">
+<div class="isotope home">
+	<div id="first-card" class="each-page inview" data-slidestate="true">
 		<div class="wrapper">
-			<div class="quiz-one">
-				<h4 class="quiz-name">Who would you pick as your team members?</h4>
-				<div class="quiz-area">
-					<div class="group-1 groups">
-						<div class="img left img-1" data-img="1"></div>
-						<div class="img right img-2" data-img="2"></div>
-					</div>
-					<div class="group-2 groups">
-						<div class="img left img-3" data-img="3"></div>
-						<div class="img right img-4" data-img="4"></div>
-					</div>
-					<div class="group-3 groups">
-						<div class="img left img-5" data-img="5"></div>
-						<div class="img right img-6" data-img="6"></div>
-					</div>
-					<div class="group-4 groups">
-						<div class="img left img-2" data-img="2"></div>
-						<div class="img right img-3" data-img="3"></div>
-					</div>
-					<div class="group-5 groups">
-						<div class="img left img-4" data-img="4"></div>
-						<div class="img right img-1" data-img="1"></div>
-					</div>
-					<div class="group-6 groups">
-						<div class="img left img-3" data-img="3"></div>
-						<div class="img right img-5" data-img="5"></div>
-					</div>
-					<div class="group-7 groups">
-						<div class="img left img-6" data-img="6"></div>
-						<div class="img right img-4" data-img="4"></div>
-					</div>
-					<div class="group-8 groups">
-						<div class="img left img-2" data-img="2"></div>
-						<div class="img right img-5" data-img="5"></div>
-					</div>
-					<div class="group-9 groups">
-						<div class="img left img-4" data-img="4"></div>
-						<div class="img right img-3" data-img="2"></div>
-					</div>
-					<div class="group-10 groups">
-						<div class="img left img-1" data-img="6"></div>
-						<div class="img right img-5" data-img="3"></div>
-					</div>
-					<div class="result groups">
-						<h2 class="main-header">Results</h2>
-						<div class="graph-area">
-							<div class="graph-g graph-1">
-								<div class="graph-gen"></div>
-								<div class="graph-all"></div>
-								<div class="graph-you"></div>
-							</div>
-							<div class="graph-g graph-2">
-								<div class="graph-gen"></div>
-								<div class="graph-all"></div>
-								<div class="graph-you"></div>
-							</div>
-							<div class="graph-g graph-3">
-								<div class="graph-gen"></div>
-								<div class="graph-all"></div>
-								<div class="graph-you"></div>
-							</div>
-							<div class="graph-g graph-4">
-								<div class="graph-gen"></div>
-								<div class="graph-all"></div>
-								<div class="graph-you"></div>
-							</div>
-							<div class="graph-g graph-5">
-								<div class="graph-gen"></div>
-								<div class="graph-all"></div>
-								<div class="graph-you"></div>
-							</div>
-							<div class="graph-g graph-6">
-								<div class="graph-gen"></div>
-								<div class="graph-all"></div>
-								<div class="graph-you"></div>
-							</div>
-						</div>
-						<div class="result-text">
-							<p><span class="big-text">78%</span></p>
-							<p>You are better than 78% of the respondents.</p>
-							<p>The more diverse you are, the better you accept people as one of you.</p>
-							<p class="meta-one">In a perfect score, all the circles should have equal radii indicating equality for everyone.</p>
-							<div class="result-action">
-								<div class="score">Improve your Score &#8594;</div>
-								<div class="share">Share and let the world know</div>
-							</div>
-						</div>
-					</div>
-
-						<div class="or"><p>or</p></div>
-		
-				</div>
-				<div class="quiz-start">Click to Start</div>
+			<div class="card-text">
+				<p>Hello, my name is Thoibi.</p>
+				<p>Together let us learn some facts about racism in the country.</p>
 			</div>
+			<svg version="1.1" id="line-one" class="speak-line" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 width="33.634px" height="50.068px" viewBox="0 0 33.634 50.068" enable-background="new 0 0 33.634 50.068" xml:space="preserve">
+				<g>
+					<g>
+						<path fill="#2889C3" d="M28.783,4.146c-0.022,7.408-12.272,5.309-14.594,12.495c-1.362,4.219-1.399,8.801-2.815,13.064
+							C9.621,34.985,6.023,39.434,2.468,43.6c-1.248,1.463,0.863,3.595,2.121,2.121c6.848-8.022,10.494-15.639,12.056-26.1
+							c1.393-9.332,15.105-4.847,15.139-15.475C31.789,2.212,28.789,2.212,28.783,4.146L28.783,4.146z"/>
+					</g>
+				</g>
+			</svg>
 		</div>
 	</div>
-	<div id="map">
-		<div id="map-svg" class="wrapper">
-			<div class="modal">
-				<h3 class="orange">Do you've a smartphone?</h3>
-				<p class="orange">Hover your smartphone camera over the map to discover hidden items.</p>
-				<p class="orange">The more you discover, the more your score improves!</p>
-				<p class="meta-one">To start, go to http://weneedus.org/race on your phone browser and enter code 'ztubd'</p>
-				
-				<p class="top-margin meta-two">Don't have an smartphone? <a href="http://weneedus.org/#/desktop">Try the desktop version</a>.</p>
+	<div id="chinky-card" class="each-page" data-slidestate="false">
+		<div class="wrapper">
+			<div class="card-text">
+				<p>Hey, Chinky!</p>
 			</div>
+			<svg version="1.1" id="line-two" class="speak-line" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 width="33.634px" height="50.068px" viewBox="0 0 33.634 50.068" enable-background="new 0 0 33.634 50.068" xml:space="preserve">
+				<g>
+					<g>
+						<path fill="#2889C3" d="M3.478,4.455C3.461,8.685,3.095,13.73,5.201,17.601c2.23,4.101,5.511,6.154,9.444,8.467
+							c6.569,3.862,3.449,8.626,6.292,14.014c1.917,3.636,5.693,4.726,8.503,7.493c1.379,1.358,3.501-0.762,2.121-2.121
+							c-2.918-2.875-6.903-3.894-8.443-8.035c-1.472-3.959-0.069-7.097-2.826-10.713c-1.909-2.505-5.363-3.9-7.967-5.519
+							C6.304,17.445,6.452,10.688,6.478,4.455C6.485,2.521,3.485,2.521,3.478,4.455L3.478,4.455z"/>
+					</g>
+				</g>
+			</svg>
+
+			<div class="middle-container"></div>
 		</div>
 	</div>
-</div>
-<div class="home">
-	<div class="wrapper more-quizzes">
-		<div class="margin">
-			<h2 class="main-header">More Quizzes</h2>
+	<div class="each-page" style="background-color: #0000FF;" data-slidestate="true">
+		<div class="wrapper">
+			Three
 		</div>
-
-		<div class="quiz left">
-			<h4 class="quiz-name">Are you a responsible Citizen?</h4>
-			<div class="teaser-graphics"> XYXYX</div>
-		</div>
-		<div class="quiz left">
-			<h4 class="quiz-name">How well do you know World Geography?</h4>
-			<div class="teaser-graphics"> XYXYX</div>
-		</div>
-		<div class="quiz left">
-			<h4 class="quiz-name">How informed are you on racially-offensive terms?</h4>
-			<div class="teaser-graphics"> XYXYX</div>
-		</div>
-
 	</div>
 </div>

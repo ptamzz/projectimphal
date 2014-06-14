@@ -1,5 +1,5 @@
 /**
- * Document: The North East 2014 Stylesheet
+ * Document: Project Imphal Stylesheet
  * Author: Pritam Pebam
  * Email: ptamzz@gmail.com
  * Version: 1.0.0
@@ -36,24 +36,12 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
-body {
-    line-height: 1;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
+body { line-height: 1;}
+ol, ul { list-style: none; }
+blockquote, q { quotes: none;}
 blockquote:before, blockquote:after,
-q:before, q:after {
-    content: '';
-    content: none;
-}
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
+q:before, q:after { content: ''; content: none;}
+table { border-collapse: collapse; border-spacing: 0;}
 
 /*  CSS Reset Ends */
 
@@ -72,6 +60,11 @@ h3 { font-size: 22px; }
 h4 { font-size: 18px; }
 h5 { font-size: 16px; }
 h6 { font-size: 14px; }
+
+.meta-one { font-size: 14px; color: rgba(0,0,0,.6); }
+.meta-two { font-size: 12px; color: rgba(0,0,0,.5); }
+
+p { line-height: 1.4em; }
 
 /* PiDragon Generic Styles */
 
@@ -105,30 +98,57 @@ h6 { font-size: 14px; }
 /* Blinking cursor styling ends */
 
 body {
-    font-family: Georgia, Times, "Times New Roman", serif;
+    /*font-family: Georgia, Times, "Times New Roman", serif;*/
+    font-family: "Ek Mukta", "Droid Sans", "Helvetica", Arial, sans-serif;
     min-height: 740px;
     -webkit-font-smoothing: antialiased;
 }
 
-p { line-height: 1.4em; }
+#welcome-msg { display: none; background-color: #2889C3; }
+#sandbar, #aside { background-color: #2889C3; }
+    #home-logo { padding: 15px 10px; }
 
-.meta-one { font-size: 14px; color: rgba(0,0,0,.6); }
-.meta-two { font-size: 12px; color: rgba(0,0,0,.5); }
+#main { min-height: 600px; overflow: hidden; }
+#aside { min-height: 400px; }
+
+.isotope { padding: 40px 0; }
+
+/** Quiz Main panel **/
+.q-title {  }
+.q-result { position: absolute; width: 200px; top: 0; left: 0; }
+    .q-res-title { margin-top: 80px; }
+
+#share { 
+    border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; 
+    position: absolute; width: 100%; left: 50%; margin-left: -50%; 
+    z-index: 1000; top: 60px; background-color: rgba(255,255,255,1); /* rgba(40,137,195,0.6);  */
+    min-height: 300px;
+}
+
+    .result-title { margin: 25px; }
+    .display-results { position: absolute; top: 100px; left: 25px; width: 200px; min-height: 300px; }
+    .result-message { position: absolute; top: 100px; left: 225px; width: 875px; min-height: 300px; padding: 0 40px; }
+
+.timer-div, .steps-div { text-align: center; background-color: #2889C3; padding: 30px 0; margin-bottom: 15px; }
+    .timer-div h3, .steps-div h3 { margin-bottom: 25px; color: #FFF; }
+.timer-result, .timer-result { font-size: 40px; color: #FFF; margin-bottom: 10px; }
+
+.big-title { font-size: 40px; line-height: 1.4em; }
+
 .orange { color: #e57c25;}
 
 .top-margin { margin-top: 25px; }
 
 
 /* Custom Code starts */
-.left { float: left; }
-.right { float: right; }
-
-.home, .bg { position: relative; width: 100%; /*-webkit-clip-path: url(#hex-mask);*/ }
-.home { background-color: #2889C3; }
+.home .each-page {  }
     .home:after { display: block; content: ' '; clear: both; }
 
-.wrapper { width: 1100px; margin: 0 auto; }
+.wrapper { width: 1200px; position: relative; left: 50%; margin-left: -600px; }
+    .wrapper:after { content: ' ';, display: block; clear: float; }
         .wrapper .margin { padding-top: 20px; color: #6CCEF4; padding-bottom: 20px; }
+    .home .wrapper { padding-left: 40px; }
+
 .parawrap { width: 750px; top: 150px; position: absolute; }
     #firstline, #secondline { font-size: 45px; color: #6CCEF4; line-height: 1.6em; }
         #firstline {  }
@@ -235,13 +255,13 @@ p { line-height: 1.4em; }
 .result-text { position: absolute; left: 450px; }
     .big-text { font-size: 80px; line-height: 1.4em; }
     .score { 
-        margin: 25px 0; padding: 15px; border-radius: 3px; font-size: 30px; width: 300px; margin: 35px auto; 
+        margin: 25px 0; padding: 15px; border-radius: 3px; font-size: 30px; width: 450px; margin: 35px 0; 
         background-color: #e67d24; color: #FFF; text-align: center;
         cursor: pointer; border: 0;
     }
         .score:active { background-color: #e79044; color: #333; }
         .score:hover { background-color: #d57628; }
-    .share { left: -350px; position: absolute; font-size: 20px; }
+    .share { position: absolute; font-size: 20px; }
 
 #central-wrap { min-height: 570px; overflow: hidden; }
 #quiz-pane { position: absolute; left: 0; right: 0; width: 100%; }
@@ -267,6 +287,107 @@ p { line-height: 1.4em; }
         .modal p.meta-two { font-size: 13px; }
 
 
+/** NE Geography  */
+.q-result .timer { font-size: 36px; color: #ff0000; margin-bottom: 25px; }
+.q-result .steps { font-size: 36px; color #00ff00; }
+
+#main-info { background-color: #FFF; height: 700px; }
+    .nav { position: absolute; top: 60px; left: -300px; width: 300px; height: 700px; background-color: rgba(40,137,195,.8); z-index: 10; }
+        .nav h1 { margin: 15px 30px; }
+        .nav li { padding: 15px 40px; display: block; pointer: cursor; }
+            .nav li:hover { background-color: rgba(40,137,195,.9); }
+    #panel { position: absolute; top: 0; left: 200px; width: 1000px; }
+        #box-arunachal { width: 305px; height: 165px; top: 85px; left: 290px; }
+        #box-assam { width: 250px; height: 110px; top: 205px; left: 170px; }
+        #box-manipur { width: 85px; height: 100px; top: 315px; left: 360px; }
+        #box-meghalaya { width: 150px; height: 55px; top: 290px; left: 160px; }
+        #box-mizoram { width: 66px; height: 165px; top: 373px; left: 305px; }
+        #box-nagaland { width: 90px; height: 85px; top: 246px; left: 385px; }
+        #box-tripura { width: 75px; height: 115px; top: 360px; left: 230px; }
+        #box-sikkim { width: 50px; height: 70px; top: 150px; left: 52px; }
+
+        .droppable { position: absolute; }
+
+    #states { position: absolute; top: 0; right: 0px; width: 300px; min-height: 300px; background-color: #F1F1F1; }
+        #states div { position: absolute; margin-bottom: 15px; z-index: 100; }
+            #arunachal { 
+                background: url(../img/states-png/arunachal.png); background-size: 90%; 
+                background-repeat: no-repeat;
+                top: 50px; left: 30px; width: 80%; height: 130px;
+            }
+
+            #assam { 
+                background: url(../img/states-png/assam.png); background-size: 80%;
+                background-repeat: no-repeat; 
+                width: 100%; height: 130px; top: 165px; left: 25px;
+            }
+
+            #manipur { 
+                width: 120px; height: 120px; background: url(../img/states-png/manipur.png); background-size: 70%;
+                background-repeat: no-repeat;
+                width: 120px; height: 120px; top: 320px; left: 20px;
+            }
+
+            #meghalaya { 
+                background: url(../img/states-png/meghalaya.png); background-size: 90%;
+                background-repeat: no-repeat; 
+                width: 150px; height: 70px; top: 345px; left: 130px;
+            }
+
+            #mizoram { 
+                background: url(../img/states-png/mizoram.png); background-size: auto 80%;
+                background-repeat: no-repeat;
+                width: 120px; height: 170px; top: 450px; left: 30px;
+            }
+
+            #nagaland { 
+                background: url(../img/states-png/nagaland.png); background-size: 80%;
+                background-repeat: no-repeat; 
+                width: 120px; height: 90px; top: 420px; left: 130px;
+            }  
+
+            #sikkim { 
+                background: url(../img/states-png/sikkim.png); background-size: auto 90%;
+                background-repeat: no-repeat;
+                width: 55px; height: 80px; top: 530px; left: 180px;
+            }
+            
+            #tripura { 
+                background: url(../img/states-png/tripura.png); background-size: auto 90%;
+                background-repeat: no-repeat;
+                width: 120px; height: 100px; top: 560px; left: 80px;
+            }
+
+
+.characters {
+    position: absolute;
+    left: 300px; z-index: 10;
+}
+
+/* **** HOME ***** */
+.skip-intro { position: absolute; right: 200px; top: 40px; color: #EED794; cursor: pointer; }
+.card-text { font-size: 45px; color: #2889C3; }
+#first-card .card-text { position: absolute; left: 350px; top: 80px; }
+    #first-card #line-one { position: absolute; left: 350px; top: 300px; }
+#chinky-card .card-text { position: absolute; right: 275px; top: 110px; z-index: 10; }
+
+#kid-one {
+    background: url(../img/chinky/lullaby-group.png);
+    background-repeat: no-repeat; background-size: 700px;
+    left: 80px; bottom: 0px; position: absolute;
+    width: 350px; height: 430px; 
+}
+
+.middle-container {
+    position: absolute; width: 1000px; height: 500px; left: 300px; top: 70px; background-color: #EDD89F;
+}
+    #creepy-guy {
+        background: url(../img/chinky/creepy-guy-group.png);
+        background-repeat: no-repeat; background-size: 700px;
+        right: 50px; bottom: 0; position: absolute; width: 250px; height: 430px;
+    }
+
+    #line-two { position: absolute; right: 250px; top: 200px; z-index: 10; background-position: -350px; }
 
 
 
