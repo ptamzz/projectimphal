@@ -1,28 +1,37 @@
-
-<div class="characters">
-	<div id="kid-one"></div>
-	<div id="arrowkey">
-		<img src="img/arrow-keys.png" alt="Arrow Key" style="width: 200px;" />
-		<p class="meta-text-12">Use Left or Right Keys to proceed.</p>
-	</div>
-</div>
 <div class="isotope home">
 	<div id="first-card" class="each-page inview" data-slidestate="true">
-		<div class="one card-text" style="left: 800px; top: 80px;  width: 800px; opacity: 0; ">
+		<div class="one card-text" style="left: 800px; top: 80px;  width: 1000px; opacity: 0; ">
 			<p>Hello, my name is Thoibi.</p>
-			<p>In light of recent racial base violences against North-Eastern citizens in the country, I'm here to share you some information.</p>
+			<p>I'm from Manipur, a small state in north-east India.</p>
+
+			<p>
+				In light of recent racial violences on North-Eastern citizens in the country, 
+				I'm here to share you some information.
+			</p>
 		</div>
 
-		<div class="two card-text" style="left: 800px; top: 80px;  width: 700px; opacity: 0; ">
-			<p>At any point, you can scroll down and take the quizzes.</p>
-			<p>Or choose one of the topic here to get continue.</p>
+		<div class="two card-text" style="left: 800px; top: 80px;  width: 800px; opacity: 0; ">
+			<p>Choose a topic on the right to go ahead.</p>
 		</div>
 
-		<svg version="1.1" id="line-one" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 width="34.896px" height="26.216px" viewBox="0 0 34.896 26.216" enable-background="new 0 0 34.896 26.216" xml:space="preserve">
-		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#2889C3" stroke-miterlimit="10" points="18.994,1.171 
-			1.994,24.171 33.619,13.796 "/>
-		</svg>
-
+		<div class="arrow-key-nudge">
+			<svg version="1.1" id="nudge-one" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				 width="50.976px" height="18.5px" viewBox="0 0 50.976 18.5" enable-background="new 0 0 50.976 18.5" xml:space="preserve">
+			<g>
+				<g>
+					<path fill="#333" d="M5.631,14.55C13.75,7.113,35.19,0.881,43.187,11.769c1.64,2.231,5.412,0.068,3.751-2.193
+						C37.083-3.842,13.042,1.876,2.56,11.478C0.49,13.374,3.57,16.438,5.631,14.55L5.631,14.55z"/>
+				</g>
+			</g>
+			<g>
+				<g>
+					<path fill="#333" d="M38.328,13.579c2.537-0.406,5.276,0.691,7.598,1.59c1.165,0.45,2.304-0.493,2.672-1.518
+						c1.187-3.306-0.081-6.73-0.2-10.095c-0.099-2.793-4.443-2.803-4.344,0c0.103,2.895,1.367,6.122,0.355,8.94
+						c0.891-0.506,1.781-1.012,2.672-1.518c-3.191-1.234-6.475-2.139-9.907-1.59C34.413,9.831,35.589,14.017,38.328,13.579
+						L38.328,13.579z"/>
+				</g>
+			</g>
+			</svg>
+		</div>
 	</div>
 </div>

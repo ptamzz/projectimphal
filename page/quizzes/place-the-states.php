@@ -1,5 +1,5 @@
 <div class="isotope">
-	<div class="each-page inview">
+	<div id="first-card" class="each-page inview" data-slidestate="true">
 		<div class="wrapper">
 		<h1 class="q-title">Place the States on it's position</h1>
 		<div class="q-result">
@@ -31,7 +31,7 @@
 			</svg>
 
 			<div id="states">
-				<h4 class="" style="margin: 20px; 15px;">8 States of North-East</h2>
+				<h3 class="" style="margin: 20px; 15px;">8 States of North-East</h3>
 				<div id="arunachal" class="drag"></div>
 				<div id="assam" class="drag"></div>
 				<div id="manipur" class="drag"></div>
@@ -45,7 +45,7 @@
 	</div>
 	</div>
 
-	<div class="each-page">
+	<div id="second-card" class="each-page" data-slidestate="true">
 		<div class="wrapper">
 			<h1 class="result-title" style="font-size: 35px;" >Result</h1>
 			<div class="display-results">
@@ -59,10 +59,10 @@
 				</div>
 			</div>
 			<div class="result-message">
-				<div class="big-title">Congratulations, you have placed the 8 states on it's proper location.</div>
+				<a class="big-title" href="#/ne-geography">Congratulations, you have placed the 8 states on it's proper location.</a>
 
 				<div class="result-action">
-					<div class="score">Learn more about the North East</div>
+					<div class="score">Learn more about the North East States</div>
 					<div class="share">Share</div>
 				</div>
 			</div>

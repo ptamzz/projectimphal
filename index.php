@@ -65,7 +65,7 @@
 	</div>
 
 	<div id="sandbar" class="row">
-		<h1 id="home-logo"><?php require_once("page/logo.php"); ?></h1>
+		<a href="#/home"><h1 id="home-logo"><?php require_once("page/logo.php"); ?></h1></a>
 		<svg version="1.1" id="menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 			 width="30.673px" height="27.399px" viewBox="0 0 30.673 27.399" enable-background="new 0 0 30.673 27.399" xml:space="preserve">
 		<g>
@@ -82,16 +82,27 @@
 		</svg>
 
 	</div>
-	<div id="nav">
+	<div id="nav" class="row">
 	 	<div class="nav-item" data-href="racial-slurs">Racial Slurs</div>
-	 	<div class="nav-item" data-href="food">Food</div>
+	 	<div class="nav-item" data-href="ne-food">NE Food</div>
 	 	<div class="nav-item" data-href="lifestyle">LifeStyle</div>
 	 	<div class="nav-item" data-href="history">History</div>
 	 	<div class="nav-item" data-href="facts">Facts</div>
 	</div>
 
-	<div id="main" class="row">
-		
+	<div id="main" class="row"><!-- main content will come here --></div>
+	<div class="characters">
+		<div id="kid-one"></div>
+		<div id="creepy-guy"></div>
+		<div id="arrowkey">
+			<img src="img/arrow-keys.png" alt="Arrow Key" style="width: 200px;" />
+			<p class="meta-text-14">Click or use the Left or Right Keys to proceed.</p>
+		</div>
+		<svg version="1.1" id="line-one" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 width="34.896px" height="26.216px" viewBox="0 0 34.896 26.216" enable-background="new 0 0 34.896 26.216" xml:space="preserve">
+		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#2889C3" stroke-miterlimit="10" points="18.994,1.171 
+			1.994,24.171 33.619,13.796 "/>
+		</svg>
 	</div>
 	<!-- <div id="share">
 		<div class="wrapper">
@@ -117,14 +128,20 @@
 				<div class="teaser-graphics"> XYXYX</div>
 			</div>
 			<div class="quiz left">
-				<h4 class="quiz-name">How well do you know World Geography?</h4>
-				<div class="teaser-graphics"> XYXYX</div>
+				<a href="#/quiz/place-the-states">
+					<h4 class="quiz-name">Place the States?</h4>
+					<div class="teaser-graphics"></div>
+				</a>
 			</div>
 			<div class="quiz left">
 				<h4 class="quiz-name">How informed are you on racially-offensive terms?</h4>
 				<div class="teaser-graphics"> XYXYX</div>
 			</div>
 		</div>
+	</div>
+
+	<div id="footer" class="row">
+		Footer
 	</div>
 
 </body>
