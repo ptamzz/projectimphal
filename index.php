@@ -65,10 +65,31 @@
 	</div>
 
 	<div id="sandbar" class="row">
-		<div class="wrapper">
-			<h1 id="home-logo">Logo</h1>
-		</div>
+		<h1 id="home-logo"><?php require_once("page/logo.php"); ?></h1>
+		<svg version="1.1" id="menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			 width="30.673px" height="27.399px" viewBox="0 0 30.673 27.399" enable-background="new 0 0 30.673 27.399" xml:space="preserve">
+		<g>
+			<rect x="1" y="0.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="11" y="0.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="21" y="0.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="1" y="9.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="11" y="9.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="21" y="9.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="1" y="18.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="11" y="18.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+			<rect x="21" y="18.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
+		</g>
+		</svg>
+
 	</div>
+	<div id="nav">
+	 	<div class="nav-item" data-href="racial-slurs">Racial Slurs</div>
+	 	<div class="nav-item" data-href="food">Food</div>
+	 	<div class="nav-item" data-href="lifestyle">LifeStyle</div>
+	 	<div class="nav-item" data-href="history">History</div>
+	 	<div class="nav-item" data-href="facts">Facts</div>
+	</div>
+
 	<div id="main" class="row">
 		
 	</div>

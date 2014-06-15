@@ -7,42 +7,71 @@
 
 // JavaScript Document
 
-var ans, numTimes, len, peg = 0, count = 0, page = 'home',
-	race = [], winHeight, winWidth, mainHeight, timerObject, count = 1, timerSet = false, slideState = true;
+var ans, numTimes, len, peg = 0, count = 0, url = 'home',
+	race = [], winHeight, winWidth, mainHeight, timerObject, count = 1, timerSet = false, slideState = true
+	current = "home", step = 0, menuUp = false;
 $(function() {
 
+	//Get window Height & Width + set DOM height & widths
 	dom = $('body, html');
 	winHeight = $(window).height();
 	winWidth = $(window).width();
-
-	console.log("Heigth: " + winHeight + ", Width" + winWidth);
-
-	//Mapping horizontal to vertical scroll
-	/* $("#main").mousewheel(function(event, delta) {
-		this.scrollLeft -= (delta * 25);
-    	event.preventDefault();
-	});
-	*/
-
-	$(document).one("click", ".skip-intro", function() { hideWCmsg(); });
-
-	//Capture LEFT/RIGHT arrow press
-	$('body').keyup(function(e) {
-		console.log(e.keyCode);
-		if (e.keyCode == 37) { slideRight(); console.log("LEFT"); }   		// RIGHT arrow
-			else if(e.keyCode == 39) { slideLeft(); console.log("RIGHT"); }	// LEFT arrow // 27 = esc
-	});
-
 	mainHeight = winHeight - 200;
+	homeWidth = winWidth-300;
 
 	if( 600 < mainHeight ){
 		$("#main").css({ 'height' : mainHeight, 'width' : winWidth });
 		$("#share").css({ 'height' : mainHeight+40 });
 	}
 
-	//Hash URL Handling
+	console.log("Heigth: " + winHeight + ", Width: " + winWidth);
+
+
+	//Handle Basic URL hash-bang
 	handleURL();													//handles URL on first time load
 	$(window).bind('hashchange', function() { handleURL();  });		//Handles URL on hashchange
+
+
+	//Skip Intro
+	$(document).on("click", ".skip-intro", function() { hideWCmsg(); });
+
+	//Show/Hide Menu
+	$(document).on("click", "#menu", function() { 
+		console.log("menu-btn-clicked");
+		if(!menuUp) { 
+			console.log("first"); 
+			showMenu(); 
+		} else { 
+			console.log("second"); 
+			hideMenu(); 
+		}
+	});
+
+	//Load categories
+	$(document).on("click", ".nav-item", function() { 
+		var href= $(this).data("href");
+		hideMenu();
+		window.location.hash = '#/' + href;
+		current = href;
+		step = 0;
+		//loadItem("page/" +href+".php");
+	});
+
+	//Set Page & Step Count on Nav Clicks
+	$(document).on("click", ".basic li", function() {  current = $(this).data('href'); });
+
+	//Capture LEFT/RIGHT arrow press
+	$('body').keyup(function(e) {
+		console.log(e.keyCode);
+		if (e.keyCode == 37) { 						// LEFT arrow
+			step--;
+			decreaseStep(step);
+		} else if(e.keyCode == 39) { 				// RIGHT arrow // 27 = esc
+			step++;
+			increaseStep(step);
+		}	
+	});
+
 
 
 	$(document).one("mouseover", "#states", function() {
@@ -54,201 +83,257 @@ $(function() {
 	});
 
 	$(document).on("click", ".result-action .score", function() {
-		loadItem("home.php", "general");
-		//slideLeft();
+		loadItem("path/home.php");
 	});
-
-	
-/*
-	//Start quiz
-	$(document).on("click", ".quiz-start", function() {
-		$(this).hide();
-		$('.quiz-area').show();
-		$('.group-1').show();
-	});
-
-	$(document).on("click", ".groups .img", function() {
-		var temp = $(this).parent('.groups');
-		if(count<= 9){
-			temp.hide();
-			temp.next('.groups').show();
-			console.log($(this).data('img'));
-
-			race[count] = $(this).data('img');	//Get Race ID
-
-			if(count == 9){ 
-				$('.or').hide(); 	//Hide or
-
-				//Magic to generate viz
-				race.sort();
-				
-				var counts
-
-				console.log("Max: " + counts);
-
-				//Find number of times most repeated value
-				for (var i = 0, len = race.length; i < len; i++) {
-					var temp = countInArray(race, i);
-					peg = (peg > temp) ? peg : temp;
-				}
-
-				//Set radius & position
-				for (var i = 0, len = race.length; i < len; i++) {
-					var temp = countInArray(race, i);
-
-					if(temp == 0){
-						$('.graph-'+i+' .graph-you').css({
-							'width' : 6,
-							'height' : 6,
-							'margin-left' : -3,
-							'top' : 50 - 3
-						});
-					} else {
-						$('.graph-'+i+' .graph-you').css({
-							'width' : (100/peg)*temp,
-							'height' : (100/peg)*temp,
-							'margin-left' : -1*((100/peg)*temp)/2,
-							'top' : 50 - ((100/peg)*temp)/2
-						});
-					}
-				}
-
-			}		
-			
-			count++;
-		}
-
-		$('body').on("click", ".result-action .score", function(){
-			$("#quiz-pane").animate({ 
-				'left' : -1*(winWidth)+200
-			}, 300);
-
-			$("#map").animate({ 
-				'left' : 0 
-			}, 300, function(){
-				$("#map").animate({ 
-					'height' : 600 
-				}, 300);
-
-				$("#central-wrap").animate({ 
-					'height' : 600 
-				}, 300);
-			});
-		});
-		
-	});
-*/
 
 }); // jQuery $(funtion() ends
 
-function getPage(hash){
-	console.log("getPage");
-	var url = (hash.charAt(1) == "/" ? hash.substr(2) : hash.substr(1)); //To work for both #/page-name & #page-name URL structure
-	return url;
+function slideLeft(){
+	var e = $("#main .inview");
+	console.log("slideLeft()");
+
+	//var card = $("#chinky-card .card-text:first-child");
+
+	if (e.data("slidestate")){
+		$("#main").scrollTo(e.prev(), 500);
+		e.removeClass('inview');
+		e.prev().addClass('inview');
+	} 
+	
+}
+
+function slideRight(){
+	var e = $("#main .inview");
+
+	if (e.data("slidestate")){
+		$("#main").scrollTo(e.next(), 500);
+		e.removeClass('inview');
+		e.next().addClass('inview');
+	}
+}
+
+function increaseStep(step){
+
+	console.log("Current: " + current + ", Step: " + step);
+
+	//What to do with each keyPress
+	switch(step){
+		case 0:
+
+			if(current == "home"){
+				
+			}
+	       
+	        break;
+	    case 1:
+
+			if(current == "home"){
+				$("#first-card .one").animate({ "left": 500, 'opacity': 0 }, 200, "swing", function(){
+					$(this).css({ "left": 800 });
+				});
+				
+				$("#first-card .two").animate({ "left": 600, 'opacity': 1 }, 400, "swing",function(){
+					showMenu();
+				});
+
+			} else if(current == "racial-slurs"){
+				slideRight();
+			}
+	       
+	        break;
+
+	    case 2:
+
+			if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#creepy-guy").show(200);
+				$("#line-two").show(200);
+				$(".one").fadeIn();
+				$("#kid-one").css({ 'background-position' : '-350px' });
+			}
+	       
+	        break;
+
+	    case 3:
+
+	    	if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#line-two").hide();
+				$(".one").hide();
+				$(".two").fadeIn();
+				$("#line-one").show(200);
+				$("#kid-one").css({ 'background-position' : 0 });
+			}
+	       
+	        break;
+	    case 4:
+	       if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#creepy-guy").css({ 'background-position' : "-473px 55px" });
+				$(".two").hide();
+				$(".three").fadeIn();
+
+				$("#bar").removeClass("pull-bar").addClass("animate-bar");
+			}
+
+	        break;
+	    case 5:
+	    	if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#creepy-guy").hide();
+				$(".three").hide();
+				$(".four").fadeIn();
+
+				$("#bar").removeClass("animate-bar").addClass("pull-bar");
+			}
+	       
+	        break;
+	    case 6:
+	    	if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				slideRight();
+			}
+	       
+	        break;
+	    default:
+	    	//Default step
+
+	}
+}
+
+function decreaseStep(step){
+	console.log("Current: " + current + ", Step: " + step);
+	//What to do with each keyPress
+	switch(step){
+		case 0:
+
+			if(current == "home"){
+				$("#first-card .two").animate({ "left": 500, 'opacity': 0 }, 100, "swing", function(){
+					$("#first-card .two").css({ "left": 800 });
+				});
+
+				$("#first-card .one").animate({ "left": 600, 'opacity': 1 }, 400, "swing",function(){
+					hideMenu();
+				});
+			}
+	       
+	        break;
+	    case 1:
+
+			if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				slideLeft(); 
+
+				$("#creepy-guy").hide();
+				$("#line-two").hide();
+				$(".one").hide();
+				$("#kid-one").css({ 'background-position' : 0 });
+			}
+	       
+	        break;
+	    case 2:
+
+			if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#line-two").fadeIn();
+				$(".one").fadeIn();
+				$(".two").hide();
+				$("#line-one").hide();
+				$("#kid-one").css({ 'background-position' : '-350px' });
+			}
+	       
+	        break;
+	    case 3:
+
+	    	if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#creepy-guy").css({ 'background-position' : "0" });
+				$(".two").fadeIn();
+				$(".three").hide();
+
+				$("#bar").addClass("pull-bar").removeClass("animate-bar");
+			}
+	       
+	        break;
+	    case 4:
+	    	if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#creepy-guy").fadeIn();
+				$(".three").fadeIn();
+				$(".four").hide();
+
+				$("#bar").removeClass("pull-bar").addClass("animate-bar");
+			}
+
+	        break;
+	    case 5:
+		    if(current == "home"){
+					//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+		    	slideLeft();
+		    }
+
+	        break;
+	    case 6:
+	       
+	        break;
+	    default:
+	    	//Default step
+
+	}
 }
 
 function handleURL(){
 	console.log("handleURL");
-	page =  getPage(window.location.hash);	//Get URL hash value "#/hashvalue" & remove "#/" 
-	page = (page == '') ? 'home' : page;
+
+	hash = (window.location.hash == '') ? '#/home' : window.location.hash;
+
+	url = hash.split("/"); //Get window hash value and split it on "/"
+	path = (url[1] == "quiz" ? "page/quizzes/" + url[2] : "page/" + url[1]);	//If-Else quiz
+	current = (url[1] == "quiz" ? url[2] : url[1]);	//For Current page
+	console.log("path: " + path + ", current: " + current + ", steps: " + step );
 
 	//If Home, show welcome message
-	if(page == 'home') {
+	if(url[1] == 'home') {
 		$("#welcome-msg").css({ 'height' : winHeight, 'display' : 'block' });
 		getTyped();
 
-		loadItem(page+".php", 'general');
-
-		//Load random quiz
-		/*
-		$.getJSON( "php/get-quiz-name.php", function(data) {
-			console.log( "Returned Page Name: " + data.page );
-			if(data.page == "error.php"){
-				loadItem(data.page, 'general');
-			} else {
-				console.log("Second Else");
-				loadItem(data.page, 'quiz');
-			}
-		});
-		*/
-
+		loadItem("page/home.php");
 	} else {
 		//Load specific page
-		loadItem(page+".php", 'quiz');
+		loadItem(path+".php");
 	}
 
-
-	// $('body').load("page/"+page+".php", function(){
-	// 	if(page == 'home') { 
-	// 		$("#thirdline .round").hide();
-	// 		getTyped();
-
-	// 		$('#map').css({ 'left' : winWidth+200 });
-	// 	}
-	// });	//Get New viewPane
-}
-
-//Get Typewriter Effect
-function getTyped(){
-	 $("#firstline").typed({
-        strings: ["Most of the racial stereotype based crimes are caused out of "],
-        typeSpeed: 5,
-        callback: function(){
-        	$("#secondline").typed({
-		        strings: ["^50 Ignorance"],
-		        typeSpeed: 5,
-		        callback: function(){
-		        	
-		        	$("#thirdline .curb").typed({
-				        strings: ["^200 How can you help change it?"],
-				        typeSpeed: 5,
-				        callback: function(){
-
-				        	var intervalHandle = setInterval(function(){
-				        		hideWCmsg();
-				        		clearInterval(intervalHandle);
-				        	},2000);	
-				        }
-			        });
-		        }
-	        });	// Second callBack ends
-
-        } // First CallBack ends
-    });
+	
 }
 
 
-function hideWCmsg(){
-	$("#welcome-msg").hide('blind', { 'direction' : 'vertical' }, 500, function(){ 
-		$('.nav').animate({ 'left': 0 }, 300, 'swing'); 
-	});
-}
+function loadItem(path){
 
-//Count occurence of certain value in array
-function countInArray(array, what) {
-    var count = 0;
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] === what) {
-            count++;
-        }
-    }
-    return count;
-}
+	//var path = (type == 'general' ? "page/" : "page/quizzes/");
 
-
-function loadItem(page, type){
-
-	var path = (type == 'general' ? "page/" : "page/quizzes/");
-
-	$.get(path+page, /*{ "page" : encodeURIComponent(email) },*/ function (html) {
+	$.get(path, function (html) {
 		$("#main").html(html);
 
-		if(page == "place-the-states.php"){ initiateDragDrop(); }
-			else if (page == "home.php") {  
-				$('.nav').css({ 'height' : mainHeight });
-				$('.characters').css({ 'height' : mainHeight, 'width' : winWidth-300 });
-				$("#main").scrollTo("#first-card", 500);
+		if(path == "page/quizzes/place-the-states.php"){ initiateDragDrop(); }
+			else if (path == "page/home.php") {  
+				//$('.characters').css({ 'height' : mainHeight, 'width' : winWidth });
+				//$("#main").scrollTo("#first-card", 500);
+					
+			} else {
+				showFirstMsg(); //Flyin first card message
 			}
+		$('.characters').css({ 'height' : mainHeight, 'width' : winWidth });
+		$('.middle-container').css({ 'height' : mainHeight-350, 'width' : homeWidth-300, 'left' : 450 });
 
 		var $container = $('.isotope');
 		$container.css({ 'height' : mainHeight-100 });
@@ -264,7 +349,7 @@ function loadItem(page, type){
 			}
 		});
 
-
+		$("#main").scrollTo(0);	//scroll to extreme left while load
 
 	})
 		 .fail(function() {
@@ -289,33 +374,6 @@ function timer(){
 	}
 }
 
-
-function slideLeft(){
-	var e = $("#main .inview");
-	console.log("slideLeft()");
-
-	if (e.data("slidestate")){
-		$("#main").scrollTo(e.next(), 500);
-		e.removeClass('inview');
-		e.next().addClass('inview');
-
-		console.log("SlidLeft");
-	}
-	
-}
-
-function slideRight(){
-	var e = $("#main .inview");
-	console.log("slideRight()");
-
-	if (e.data("slidestate")){
-		$("#main").scrollTo(e.prev(), 500);
-		e.removeClass('inview');
-		e.prev().addClass('inview');
-
-		console.log("SlidRight");
-	}
-}
 
 
 //Quiz: Place the State
@@ -439,3 +497,78 @@ function dropSnap(){
 }
 
 //Quiz: Place the State ENDS
+
+
+//Get Typewriter Effect
+function getTyped(){
+	 $("#firstline").typed({
+        strings: ["Most of the racial stereotype based crimes are caused out of "],
+        typeSpeed: 5,
+        callback: function(){
+        	$("#secondline").typed({
+		        strings: ["^50 Ignorance"],
+		        typeSpeed: 5,
+		        callback: function(){
+		        	
+		        	$("#thirdline .curb").typed({
+				        strings: ["^200 How can you help change it?"],
+				        typeSpeed: 5,
+				        callback: function(){
+
+				        	var intervalHandle = setInterval(function(){
+				        		hideWCmsg();
+				        		clearInterval(intervalHandle);
+				        	},2000);	
+				        }
+			        });
+		        }
+	        });	// Second callBack ends
+
+        } // First CallBack ends
+    });
+}
+
+function hideWCmsg(){
+	$("#welcome-msg").hide('blind', { 'direction' : 'vertical' }, 500, function(){
+		//If arrows have not been used as yet
+		if(step <= 0){ showFirstMsg(); }
+	});
+}
+
+function showFirstMsg(){
+	$("#first-card .one").animate({ "left": 600, 'opacity': 1 }, 400, "swing");
+	$('#line-one').animate({ 'left': 500 }, 700, 'swing');
+}
+
+//Count occurence of certain value in array
+function countInArray(array, what) {
+    var count = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] === what) {
+            count++;
+        }
+    }
+    return count;
+}
+
+function showMenu(){
+	$("#nav").show();
+	$("#nav div:nth-child(1)").animate({ "left": 0, "top": 0 }, 200, "swing");
+	$("#nav div:nth-child(2)").animate({ "left": 0, "top": 0 }, 300, "swing");
+	$("#nav div:nth-child(3)").animate({ "left": 0, "top": 0 }, 400, "swing");
+	$("#nav div:nth-child(4)").animate({ "left": 0, "top": 0 }, 500, "swing");
+	$("#nav div:nth-child(5)").animate({ "left": 0, "top": 0 }, 600, "swing");
+	menuUp = true;
+}
+
+function hideMenu(){
+	$("#nav div:nth-child(5)").animate({ "left": 300, "top": "-65px" }, 70, "swing");
+	$("#nav div:nth-child(4)").animate({ "left": 300, "top": "-65px" }, 140, "swing");
+	$("#nav div:nth-child(3)").animate({ "left": 300, "top": "-65px" }, 210, "swing");
+	$("#nav div:nth-child(2)").animate({ "left": 300, "top": "-65px" }, 280, "swing");
+	$("#nav div:nth-child(1)").animate({ "left": 300, "top": "-65px" }, 350, "swing", function(){
+		$("#nav").hide();
+	});
+	menuUp = false;
+
+}
