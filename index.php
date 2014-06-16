@@ -91,10 +91,12 @@
 	 	<div class="nav-item" data-href="facts">Facts</div> -->
 	</div>
 
+	<div id="progress" style="height: 4px; background-color: #f48914; position: relative; z-index: 100;"></div>
 	<div id="main" class="row"><!-- main content will come here --></div>
 	<div class="characters">
 		<div id="kid-one"></div>
 		<div id="creepy-guy"></div>
+		<img id="college-girl" src="img/chinky/college-girl.png" alt="" style="top: 60px;">
 		<div id="arrowkey">
 			<img src="img/arrow-keys.png" alt="Arrow Key" style="width: 200px;" />
 			<p class="meta-text-14">Click or use the Left or Right Keys to proceed.</p>
@@ -117,7 +119,7 @@
 	<div id="aside" class="row">
 		<div class="wrapper more-quizzes">
 			<div class="margin">
-				<h2 class="main-header">Quizzes</h2>
+				<h2 class="main-header">Quiz:</h2>
 			</div>
 
 			<div class="quiz left">

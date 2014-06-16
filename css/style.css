@@ -402,7 +402,18 @@ body {
         }
 
 
-        #nav .nav-text { position: relative; }
+        #nav .nav-text { 
+            position: absolute; line-height: 1.4em;
+            bottom: 12px;
+            background-color: rgba(255,255,255,.8);
+            width: 100%;
+        }
+#racial-slurs {
+    background: url(../img/slurs.png);
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
 #ne-food {
     background: url(../img/food/soibum_yendem_eromba.jpg);
     background-size: cover; 
@@ -506,12 +517,17 @@ body {
     position: absolute; 
     width: 1000px; height: 500px; 
     left: 300px; top: 111px; 
-    background-color: rgba(241,241,241,.8);
+    background-color: rgba(241,241,241,.9);
 }
     #creepy-guy {
         background: url(../img/chinky/creepy-guy-group.png);
         background-repeat: no-repeat; background-size: 1200px;
         right: 370px; top: 113px; position: absolute; width: 250px; height: 430px;
+        display: none;
+    }
+
+    #college-girl {
+        left: 400px; top: 113px; position: absolute; width: 225px; 
         display: none;
     }
 
@@ -574,7 +590,7 @@ body {
 
 #ngari {
     background: url(../img/food/ngari-one.jpg);
-    background-size: cover; background-position: 30% 50%;
+    background-size: cover; background-position: 30% 90%;
 }
 #hawaijar {
     background: url(../img/food/hawaijar.jpg);
@@ -582,7 +598,7 @@ body {
 }
 #soibum {
     background: url(../img/food/soibum.jpg);
-    background-size: cover; background-position: 50% 50%;
+    background-size: cover; background-position: -370px 50%;
 }
 
 
@@ -592,7 +608,7 @@ body {
 }
 #pork-bamboo-shoot{
     background: url(../img/food/pork-bamboo-shoot.jpg);
-    background-size: cover; background-position: 30% 50%;
+    background-size: cover; background-position: 30% 70%;
 }
 
 
@@ -639,3 +655,20 @@ body {
     0    { transform: scale(1) translate(0,0); }
     100%  { transform: scale(1.2) translate(50px,0); }
 }
+
+
+.bubble-chat {
+    padding: 60px 35px;
+    border-radius: 50%;
+    border: solid 2px rgba(0,0,0,.6);
+}
+    .bubble-chat:before { 
+        content:""; position: absolute; 
+        right: 100%; 
+        top: 26px; 
+        width: 0; height: 0; 
+        border-left: 50px solid transparent; 
+        border-right: 50px solid transparent; 
+        border-top: 100px solid red;
+    }
+

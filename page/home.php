@@ -15,7 +15,7 @@
 			<p>Choose a topic on the right to go ahead.</p>
 		</div>
 
-		<div class="arrow-key-nudge">
+		<!-- <div class="arrow-key-nudge">
 			<svg version="1.1" id="nudge-one" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 				 width="50.976px" height="18.5px" viewBox="0 0 50.976 18.5" enable-background="new 0 0 50.976 18.5" xml:space="preserve">
 			<g>
@@ -32,7 +32,7 @@
 						L38.328,13.579z"/>
 				</g>
 			</g>
-			</svg>
+			</svg> -->
 		</div>
 	</div>
 </div>

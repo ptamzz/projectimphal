@@ -2,27 +2,28 @@
 <div class="isotope home">
 	<div id="first-card" class="each-page inview" data-slidestate="true">
 		<div class="one card-text" style="top: 180px;  width: 1000px; opacity: 0; ">
-			<p>Let us talk about racial slurs used to address the people of North-East India.</p>
+			<p>It is always best to avoid using racial-slurs.</p>
+			<p>The usage of racial-slurs provoke sections of the society across the globe.</p>
 		</div>
 	</div>
 	<div id="second-card" class="each-page" data-slidestate="true">
-		<div class="one card-text" style="top: 160px;  width: 1000px; opacity: 0; ">
+		<div class="one card-text" style="top: 180px;  width: 1000px; opacity: 0; ">
 			<p>
-				Many people <i>unknowingly</i> and <i>unintentionally</i> use extremely 
-				"derogatory terms" to address a person from the north-east.
+				In India, many people, perhaps unintentionally, use racial-slurs
+				while addressing a person from a different region, such as...
 			</p>
 		</div>
 	</div>
 	<div id="third-card" class="each-page" data-slidestate="true">
-		<div class="one card-text" style="right: 705px; top: 110px;">
-			<p>Hey, Chinky!</p>
+		<div class="one card-text" style="right: 650px; top: 150px;">
+			<p>Hi, Chinky!</p>
 		</div>
 		<div class="two card-text" style="left: 650px; top: 100px;  width: 1000px;  opacity: 0;">
-			<p>"Chinky" is an extremely derogatory term and should be avoided.</p>
-			<p>A personal using this term can be booked and jailed for upto 5 years...</p>
+			<p>"Chinky" is a derogatory term while addressing a person from the north-east.</p>
+			<p>A person using this term can be booked and jailed for upto 5 years.</p>
 		</div>
 		<div class="three card-text" style="left: 530px; top: 180px;  width: 500px;  opacity: 0;">
-			<p>... and may be denied anticipatory bail.</p>
+			<p>And he or she may also be denied anticipatory bail.</p>
 		</div>
 		
 		<svg version="1.1" id="line-two" class="speak-line" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -37,26 +38,25 @@
 			</g>
 		</svg>
 
-		<div class="middle-container">
-			<div class="img-pan">
-				<!-- <img id="sikkim-bg" src="img/chinky/sikkim-bg.jpg" /> -->
-			</div>
-			<img id="college-girl" src="img/chinky/college-girl.png" alt="" style="position: absolute;
-left: 160px;">
+		<div class="middle-container" style="background-color: #FFF;">
 			<div id="bar"></div>
 		</div>
 	</div>
 	<div id="fourth-card" class="each-page" data-slidestate="true">
-		<div class="one card-text" style="left: 650px; top: 200px;  width: 700px;">
+		<div class="one card-text" style="left: 650px; top: 100px;  width: 700px;">
 			<p>"Momo", "Chinese" etc. are some of the terms we should avoid.</p>
-		</div>
-	</div>
-	<div id="fifth-card" class="each-page" data-slidestate="true">
-		<div class="middle-container" style="background-color: rgba(255,255,255,.8); top: 411px; height: 333px; "></div>
-		<div class="one card-text" style="left: 600px; top: 450px;  width: 700px;">
 			<p>In fact, you should try out Momo.</p>
 			<p>It is a <a href="http://en.wikipedia.org/wiki/Momo_%28dumpling%29" target="_blank">type of dumpling</a> 
 				native to Nepal, Bhutan and parts of north-east India.</p>
 		</div>
+		<img id="momo-img" src="img/momo_nepal.png" style="position: absolute;
+right: 0;"/>
+	</div>
+	<div id="fifth-card" class="each-page" data-slidestate="true">
+		<div class="one card-text" style="left: 350px; top: 200px;  width: 700px;">
+			<p>The north-east has a magnificient cuisine.</p>
+			<p>You should definitely ask your NE friends to invite you for a lunch someone!</p>
+		</div>
+
 	</div>
 </div>

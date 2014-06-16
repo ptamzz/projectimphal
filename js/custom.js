@@ -7,7 +7,7 @@
 
 // JavaScript Document
 
-var ans, numTimes, len, peg = 0, count = 0, url = 'home', time,
+var ans, numTimes, len, peg = 0, count = 0, url = 'home', time, numSteps = 0, stepWidth = 0,
 	race = [], winHeight, winWidth, mainHeight, timerObject, count = 1, timerSet = false, slideState = true
 	current = "home", step = 0, menuUp = false, quiz = false;
 $(function() {
@@ -70,9 +70,16 @@ $(function() {
 			increaseStep(step);
 		}
 
+		console.log("Kwys");
 		//Hide arrow keys
 		$("#arrowkey").fadeOut();
-		$("#arrow-key-nudge").fadeOut();
+		$(".arrow-key-nudge").fadeOut();
+
+		if(step <= numSteps) {
+			//Show ProgressBar
+			$("#progress").animate({ "width" : step*stepWidth });
+		}
+		
 	});
 
 
@@ -135,9 +142,12 @@ function increaseStep(step){
 				animateEachOut($("#first-card .one"), $("#line-one"));
 				animateEachIn($("#first-card .two"), $("#line-one"));
 				showMenu();
+
+				$(".arrow-key-nudge").hide();
 			} else if(current == "racial-slurs"){
 				slideRight();
-				$("#second-card .one").animate({ "left": 450, 'opacity': 1 }, 400, "swing" );
+				animateEachIn($("#second-card .one"), $("#line-one"));
+
 				$("#kid-one").css({ 'background-position' : 0 });
 			} else if(current == "ne-food"){
 				slideRight();
@@ -160,14 +170,21 @@ function increaseStep(step){
 
 				$("#creepy-guy").fadeIn();
 				$("#line-two").fadeIn();
+
 				$("#third-card .one").fadeIn();
 				$("#third-card .one").css({ 'opacity' : 1 });
 
-				$("#kid-one").css({ 'background-position' : '-350px' });
+				$("#kid-one").hide();
+				$("#college-girl").fadeIn();
+
+				$("#main").css({'background-color' : "#fcf297"});
 			} else if(current == "ne-food"){
 				$("#second-card .one").hide();
 
 				$("#second-card .two").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				
+				$("#ngari").css({ 'background-position' : '-500px 90%' });
+
 				$("#hawaijar").show();
 				$("#hawaijar").animate({ "left": "35%" }, 800, "swing");
 			} 
@@ -181,12 +198,16 @@ function increaseStep(step){
 			} else if (current=="racial-slurs"){
 				$("#creepy-guy").hide();
 				$("#line-two").hide();
-				$("#third-card .one").hide();
+				$("#main").css({ "background" : "none" });
+				$("#line-one").show();
+
+				animateEachOut($("#third-card .one"), $("#line-one"));
+				$("#kid-one").fadeIn();
+
 				$(".middle-container").hide();
 				$("#college-girl").hide();
 				
-				$("#third-card .two").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
-				$("#line-one").fadeIn();
+				animateEachIn($("#third-card .two"), $("#line-one"));
 				$("#kid-one").css({ 'background-position' : 0 });
 			} else if(current == "ne-food"){
 				$("#second-card .two").hide();
@@ -202,11 +223,12 @@ function increaseStep(step){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
 				$("#creepy-guy").css({ 'background-position' : "-730px 55px", 'width' : 240 });
-				$("#third-card .two").hide();
+				animateEachOut($("#third-card .two"), $("#line-one"));
 
 				$("#creepy-guy").fadeIn();
 				$(".middle-container").fadeIn();
-				$("#third-card .three").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+
+				animateEachIn($("#third-card .three"), $("#line-one"));
 
 				$("#bar").show();
 				$("#bar").removeClass("pull-bar").addClass("animate-bar");
@@ -224,10 +246,10 @@ function increaseStep(step){
 				$("#bar").removeClass("animate-bar").addClass("pull-bar");
 				$("#bar").hide();
 				$("#creepy-guy").hide();
-				$("#third-card .three").hide();
+				animateEachOut($("#third-card .three"), $("#line-one"));
 
 				slideRight();
-				$("#fourth-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				animateEachIn($("#fourth-card .one"), $("#line-one"));
 			}  else if(current == "ne-food"){
 				$("#ngari").hide();
 				$("#hawaijar").hide();
@@ -236,7 +258,8 @@ function increaseStep(step){
 				$("#line-one").fadeIn();
 				
 				slideRight();
-				$("#third-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				animateEachIn($("#third-card .one"), $("#line-one"));
+				//$("#third-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
 			} 
 	       
 	        break;
@@ -245,46 +268,35 @@ function increaseStep(step){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
 				slideRight();
-				$("#line-one").hide();
-				$("#fifth-card .one").css({ 'opacity' : 1 });
+				//$("#line-one").hide();
+				//$("#fifth-card .one").css({ 'opacity' : 1 });
+				animateEachIn($("#fifth-card .one"), $("#line-one"));
 				
-				$("#main").css({
-					"background" : "url(img/momo_nepal.jpg)",
-					'background-repeat': 'no-repeat',
-					'background-size': 'cover',
-					'background-position' : '50% 50%'
-				});
 				$("#kid-one").css({ 'background-position' : "-1065px" });
 				showMenu();
 			} else if(current == "ne-food"){
 				$("#line-one").hide();
 				slideRight();
-				$("#fourth-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
-			} 
-	       
-	        break;
-	    case 7:
-	    	if(current == "ne-food"){
-				$("#fourth-card .one").hide();
-				$("#fourth-card .two").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
-				
+				animateEachIn($("#fourth-card .one"), $("#line-one"));
 				$("#fourth-card .middle-container").fadeIn();
 				$("#eromba").show();
 				$("#eromba").animate({ "left": 0 }, 800, "swing");
 			} 
 	       
 	        break;
-	    case 8:
+	    case 7:
 	    	if(current == "ne-food"){
-				$("#fourth-card .two").hide();
-
-				$("#fourth-card .three").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+	    		animateEachOut($("#fourth-card .one"), $("#line-one"));
+	    		animateEachIn($("#fourth-card .two"), $("#line-one"));
+				//$("#fourth-card .one").hide();
+				//$("#fourth-card .two").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				
 				$("#pork-bamboo-shoot").show();
 				$("#pork-bamboo-shoot").animate({ "left": "50%" }, 800, "swing");
 			} 
 	       
 	        break;
-	    case 9:
+	    case 8:
 	    	if(current == "ne-food"){
 	    		$("#line-one").fadeIn();
 	    		$("#fourth-card .middle-container").hide();
@@ -292,10 +304,16 @@ function increaseStep(step){
 	    		$("#pork-bamboo-shoot").hide();
 
 				slideRight();
-				$("#fifth-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				animateEachIn($("#fifth-card .one"), $("#line-one"));
+				//$("#fifth-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				$("#kid-one").css({ 'background-position' : '-1055px' });
 
 				showMenu();
 			} 
+	       
+	        break;
+	    case 9:
+	    	
 	       
 	        break;
 	    default:
@@ -397,6 +415,7 @@ function decreaseStep(step){
 function handleURL(){
 	console.log("handleURL");
 	reset();	//Reset DOM javascript manipulations
+	hideMenu();
 
 	hash = (window.location.hash == '') ? '#/home' : window.location.hash;
 
@@ -442,12 +461,15 @@ function loadItem(path){
 			console.log("Home -- " + current);
 			$('.characters').css({ 'height' : mainHeight, 'width' : winWidth });
 			$('.characters').fadeIn();
-			$('.middle-container').css({ 
-				'height' : mainHeight-350, 
-				'width' : homeWidth-300, 
-				'left' : '50%', 
-				'margin-left' : (-1*(homeWidth-300))/2 
-			});
+			if(current != "ne-food"){
+				$('.middle-container').css({ 
+					'height' : mainHeight-350, 
+					'width' : homeWidth-300, 
+					'left' : '50%', 
+					'margin-left' : (-1*(homeWidth-300))/2 
+				});
+			}
+			
 		}
 
 		if (current == "ne-food"){
@@ -456,7 +478,7 @@ function loadItem(path){
 		
 
 		var $container = $('.isotope');
-		$container.css({ 'height' : mainHeight-100 });
+		$container.css({ 'height' : mainHeight });
 		$('.each-page').css({ 'width' : winWidth, 'height' : mainHeight-80 });
 
 		// init Isotope
@@ -470,6 +492,20 @@ function loadItem(path){
 		});
 
 		$("#main").scrollTo(0);	//scroll to extreme left while load
+
+	
+		$("#progress").css({ 'width' : 0 });
+		//Identify number of steps 
+		if(current =="home"){
+			numSteps = 0;
+		} else if(current == "racial-slurs"){
+			numSteps = 6;
+		} else if(current == "ne-food"){
+			numSteps = 8;
+		}
+		if(current != "home"){
+			stepWidth = winWidth/numSteps;
+		}
 
 	})
 		 .fail(function() {
@@ -665,7 +701,7 @@ function hideWCmsg(){
 			setInterval(function(){
 				$(".arrow-key-nudge").fadeIn();
 				$('.arrow-key-nudge').addClass('animated bounce');
-			}, 3000);
+			}, 500);
 
 		});
 	});
@@ -692,21 +728,21 @@ function showMenu(){
 
 	$("#nav").show();
 	$("#nav").animate({ 'width' : 300 }, 400, "swing");
-	$("#nav div:nth-child(1)").animate({ "left": 0, "top": 0 }, 200, "swing");
-	$("#nav div:nth-child(2)").animate({ "left": 0, "top": 0 }, 300, "swing");
-	$("#nav div:nth-child(3)").animate({ "left": 0, "top": 0 }, 400, "swing");
-	$("#nav div:nth-child(4)").animate({ "left": 0, "top": 0 }, 500, "swing");
-	$("#nav div:nth-child(5)").animate({ "left": 0, "top": 0 }, 600, "swing");
+	$("#nav>div:nth-child(1)").animate({ "left": 0, "top": 0 }, 200, "swing");
+	$("#nav>div:nth-child(2)").animate({ "left": 0, "top": 0 }, 300, "swing");
+	$("#nav>div:nth-child(3)").animate({ "left": 0, "top": 0 }, 400, "swing");
+	$("#nav>div:nth-child(4)").animate({ "left": 0, "top": 0 }, 500, "swing");
+	$("#nav>div:nth-child(5)").animate({ "left": 0, "top": 0 }, 600, "swing");
 	menuUp = true;
 }
 
 function hideMenu(){
 	$(".menu4").removeClass("open");
-	$("#nav div:nth-child(5)").animate({ "left": 300, "top": "-65px" }, 70, "swing");
-	$("#nav div:nth-child(4)").animate({ "left": 300, "top": "-65px" }, 140, "swing");
-	$("#nav div:nth-child(3)").animate({ "left": 300, "top": "-65px" }, 210, "swing");
-	$("#nav div:nth-child(2)").animate({ "left": 300, "top": "-65px" }, 280, "swing");
-	$("#nav div:nth-child(1)").animate({ "left": 300, "top": "-65px" }, 350, "swing", function(){
+	$("#nav>div:nth-child(5)").animate({ "left": 300, "top": "-65px" }, 70, "swing");
+	$("#nav>div:nth-child(4)").animate({ "left": 300, "top": "-65px" }, 140, "swing");
+	$("#nav>div:nth-child(3)").animate({ "left": 300, "top": "-65px" }, 210, "swing");
+	$("#nav>div:nth-child(2)").animate({ "left": 300, "top": "-65px" }, 280, "swing");
+	$("#nav>div:nth-child(1)").animate({ "left": 300, "top": "-65px" }, 350, "swing", function(){
 		$("#nav").animate({ 'width' : 0 }, 400, "swing");
 		$("#nav").hide();
 	});
@@ -719,11 +755,12 @@ function setMainDimension(){
 		$("#main").css({ 'height' : mainHeight });
 		$("#share").css({ 'height' : mainHeight+40 });
 		$("#nav").css({ 'height' : mainHeight });
-		$("#nav .nav-item").css({ 'height' : mainHeight/2, "line-height" : mainHeight/2 + "px" });
+		$("#nav .nav-item").css({ 'height' : mainHeight/2 });
 		$("#nav .nav-item:before").css({ 'height' : mainHeight/2 });
 	}
 
 	$("#main").css({'width' : winWidth });
+	$("#progress").css({ 'width' : 0 });
 }
 
 
@@ -739,6 +776,6 @@ function animateEachIn(card, e){
 
 function animateEachOut(card, e){
 	card.animate({ "left": 650, 'opacity': 0 }, 400, "swing");
-	e.animate({ 'left': 300, 'opacity': 0 }, 700, 'swing');
+	e.animate({ 'left': 300, 'opacity': 0 }, 200, 'swing');
 }
 
