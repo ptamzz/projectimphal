@@ -1,16 +1,17 @@
 <div class="isotope home">
 	<div id="first-card" class="each-page inview" data-slidestate="true">
-		<div class="one card-text" style="left: 800px; top: 80px;  width: 1000px; opacity: 0; ">
+		<div class="one card-text" style="top: 80px; width: 1000px;">
 			<p>Hello, my name is Thoibi.</p>
 			<p>I'm from Manipur, a small state in north-east India.</p>
 
 			<p>
-				In light of recent racial violences on North-Eastern citizens in the country, 
-				I'm here to share you some information.
+				In light of recent racial violences, 
+				I'm here to share you some information about the North East.
 			</p>
 		</div>
 
-		<div class="two card-text" style="left: 800px; top: 80px;  width: 800px; opacity: 0; ">
+		<div class="two card-text" style="top: 140px; width: 800px;">
+			<p>Let us try an understand a few things to keep ourselves vigilant.</p>
 			<p>Choose a topic on the right to go ahead.</p>
 		</div>
 

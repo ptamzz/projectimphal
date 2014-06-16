@@ -33,13 +33,15 @@ $(function() {
 	$(document).on("click", ".skip-intro", function() { hideWCmsg(); });
 
 	//Show/Hide Menu
-	$(document).on("click", "#menu", function() { 
+	$(document).on("click", ".icon", function() { 
 		console.log("menu-btn-clicked");
 		if(!menuUp) { 
 			console.log("first"); 
+			$(this).addClass("open");
 			showMenu(); 
 		} else { 
-			console.log("second"); 
+			console.log("second");
+			$(this).removeClass("open");
 			hideMenu(); 
 		}
 	});
@@ -59,6 +61,7 @@ $(function() {
 	//Capture LEFT/RIGHT arrow press
 	$('body').keyup(function(e) {
 		console.log(e.keyCode);
+
 		if (e.keyCode == 37) { 						// LEFT arrow
 			step--;
 			decreaseStep(step);
@@ -67,7 +70,9 @@ $(function() {
 			increaseStep(step);
 		}
 
-		$(".arrow-key-nudge").fadeOut();
+		//Hide arrow keys
+		$("#arrowkey").fadeOut();
+		$("#arrow-key-nudge").fadeOut();
 	});
 
 
@@ -127,20 +132,16 @@ function increaseStep(step){
 	    case 1:
 
 			if(current == "home"){
-				$("#first-card .one").animate({ "left": 500, 'opacity': 0 }, 200, "swing", function(){
-					$(this).css({ "left": 800 });
-				});
-				
-				$("#first-card .two").animate({ "left": 600, 'opacity': 1 }, 400, "swing",function(){
-					showMenu();
-				});
-
+				animateEachOut($("#first-card .one"), $("#line-one"));
+				animateEachIn($("#first-card .two"), $("#line-one"));
+				showMenu();
 			} else if(current == "racial-slurs"){
 				slideRight();
-				$("#second-card .one").animate({ "left": 600, 'opacity': 1 }, 400, "swing" );
-
+				$("#second-card .one").animate({ "left": 450, 'opacity': 1 }, 400, "swing" );
+				$("#kid-one").css({ 'background-position' : 0 });
 			} else if(current == "ne-food"){
 				slideRight();
+				$("#line-one").hide();
 
 				$("#second-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
 				$("#ngari").show();
@@ -160,6 +161,8 @@ function increaseStep(step){
 				$("#creepy-guy").fadeIn();
 				$("#line-two").fadeIn();
 				$("#third-card .one").fadeIn();
+				$("#third-card .one").css({ 'opacity' : 1 });
+
 				$("#kid-one").css({ 'background-position' : '-350px' });
 			} else if(current == "ne-food"){
 				$("#second-card .one").hide();
@@ -180,6 +183,7 @@ function increaseStep(step){
 				$("#line-two").hide();
 				$("#third-card .one").hide();
 				$(".middle-container").hide();
+				$("#college-girl").hide();
 				
 				$("#third-card .two").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
 				$("#line-one").fadeIn();
@@ -197,7 +201,7 @@ function increaseStep(step){
 	       if(current == "home"){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
-				$("#creepy-guy").css({ 'background-position' : "-473px 55px" });
+				$("#creepy-guy").css({ 'background-position' : "-730px 55px", 'width' : 240 });
 				$("#third-card .two").hide();
 
 				$("#creepy-guy").fadeIn();
@@ -228,6 +232,9 @@ function increaseStep(step){
 				$("#ngari").hide();
 				$("#hawaijar").hide();
 				$("#soibum").hide();
+
+				$("#line-one").fadeIn();
+				
 				slideRight();
 				$("#third-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
 			} 
@@ -238,15 +245,19 @@ function increaseStep(step){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
 				slideRight();
+				$("#line-one").hide();
+				$("#fifth-card .one").css({ 'opacity' : 1 });
+				
 				$("#main").css({
 					"background" : "url(img/momo_nepal.jpg)",
 					'background-repeat': 'no-repeat',
 					'background-size': 'cover',
 					'background-position' : '50% 50%'
 				});
-
+				$("#kid-one").css({ 'background-position' : "-1065px" });
 				showMenu();
 			} else if(current == "ne-food"){
+				$("#line-one").hide();
 				slideRight();
 				$("#fourth-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
 			} 
@@ -275,12 +286,15 @@ function increaseStep(step){
 	        break;
 	    case 9:
 	    	if(current == "ne-food"){
+	    		$("#line-one").fadeIn();
 	    		$("#fourth-card .middle-container").hide();
 	    		$("#eromba").hide();
 	    		$("#pork-bamboo-shoot").hide();
 
 				slideRight();
 				$("#fifth-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+
+				showMenu();
 			} 
 	       
 	        break;
@@ -326,10 +340,13 @@ function decreaseStep(step){
 			if(current == "home"){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
-				$("#line-two").fadeIn();
-				$(".one").fadeIn();
 				$(".two").hide();
 				$("#line-one").hide();
+
+				$("#line-two").fadeIn();
+				$(".one").fadeIn();
+
+
 				$("#kid-one").css({ 'background-position' : '-350px' });
 			}
 	       
@@ -637,21 +654,26 @@ function hideWCmsg(){
 	$("#welcome-msg").hide('blind', { 'direction' : 'vertical' }, 500, function(){
 
 		console.log("hideWCmsg");
-		$('.row').show();
+		//$('.row').show();
 
 		//If arrows have not been used as yet
 		$('.characters').css({ 'height' : mainHeight, 'width' : winWidth });
+		$('#menu').fadeIn();
 
 		if(step <= 0){ showFirstMsg(); }
-		$('.characters').fadeIn();
+		$('.characters').fadeIn("slow", function(){
+			setInterval(function(){
+				$(".arrow-key-nudge").fadeIn();
+				$('.arrow-key-nudge').addClass('animated bounce');
+			}, 3000);
 
-		$(".arrow-key-nudge").fadeIn();
+		});
 	});
 }
 
 function showFirstMsg(){
-	$("#first-card .one").animate({ "left": 600, 'opacity': 1 }, 400, "swing");
-	$('#line-one').animate({ 'left': 500 }, 700, 'swing');
+	
+	animateEachIn($("#first-card .one"), $('#line-one'));
 }
 
 //Count occurence of certain value in array
@@ -666,7 +688,10 @@ function countInArray(array, what) {
 }
 
 function showMenu(){
+	$(".menu4").addClass("open");
+
 	$("#nav").show();
+	$("#nav").animate({ 'width' : 300 }, 400, "swing");
 	$("#nav div:nth-child(1)").animate({ "left": 0, "top": 0 }, 200, "swing");
 	$("#nav div:nth-child(2)").animate({ "left": 0, "top": 0 }, 300, "swing");
 	$("#nav div:nth-child(3)").animate({ "left": 0, "top": 0 }, 400, "swing");
@@ -676,11 +701,13 @@ function showMenu(){
 }
 
 function hideMenu(){
+	$(".menu4").removeClass("open");
 	$("#nav div:nth-child(5)").animate({ "left": 300, "top": "-65px" }, 70, "swing");
 	$("#nav div:nth-child(4)").animate({ "left": 300, "top": "-65px" }, 140, "swing");
 	$("#nav div:nth-child(3)").animate({ "left": 300, "top": "-65px" }, 210, "swing");
 	$("#nav div:nth-child(2)").animate({ "left": 300, "top": "-65px" }, 280, "swing");
 	$("#nav div:nth-child(1)").animate({ "left": 300, "top": "-65px" }, 350, "swing", function(){
+		$("#nav").animate({ 'width' : 0 }, 400, "swing");
 		$("#nav").hide();
 	});
 	menuUp = false;
@@ -691,6 +718,9 @@ function setMainDimension(){
 	if( 600 < mainHeight ){
 		$("#main").css({ 'height' : mainHeight });
 		$("#share").css({ 'height' : mainHeight+40 });
+		$("#nav").css({ 'height' : mainHeight });
+		$("#nav .nav-item").css({ 'height' : mainHeight/2, "line-height" : mainHeight/2 + "px" });
+		$("#nav .nav-item:before").css({ 'height' : mainHeight/2 });
 	}
 
 	$("#main").css({'width' : winWidth });
@@ -701,3 +731,14 @@ function reset(){
 	$("#main").css({ "background" : "none" });
 	$(".characters").hide();
 }
+
+function animateEachIn(card, e){
+	card.animate({ "left": 450, 'opacity': 1 }, 400, "swing");
+	e.animate({ 'left': 350, 'opacity': 1 }, 700, 'swing');
+}
+
+function animateEachOut(card, e){
+	card.animate({ "left": 650, 'opacity': 0 }, 400, "swing");
+	e.animate({ 'left': 300, 'opacity': 0 }, 700, 'swing');
+}
+

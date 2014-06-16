@@ -11,6 +11,7 @@
     <meta name="author" content="Pritam Pebam" />
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Ek+Mukta:400,600,700,800,200,300,500|Droid+Sans:400,700" />
+	<link rel="stylesheet" href="css/animate.css">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" />
 
@@ -65,29 +66,29 @@
 	</div>
 
 	<div id="sandbar" class="row">
-		<a href="#/home"><h1 id="home-logo"><?php require_once("page/logo.php"); ?></h1></a>
-		<svg version="1.1" id="menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 width="30.673px" height="27.399px" viewBox="0 0 30.673 27.399" enable-background="new 0 0 30.673 27.399" xml:space="preserve">
-		<g>
-			<rect x="1" y="0.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="11" y="0.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="21" y="0.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="1" y="9.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="11" y="9.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="21" y="9.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="1" y="18.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="11" y="18.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-			<rect x="21" y="18.628" fill-rule="evenodd" clip-rule="evenodd" fill="#313132" width="9" height="8"/>
-		</g>
-		</svg>
-
+		<a id="home-logo" href="#/home">
+			<?php require_once("page/logo.php"); ?>
+		</a>
 	</div>
+	<section id="menu"  class="row">
+	  <div class="icon menu4">
+	    <span></span>
+	    <span></span>
+	    <span></span>
+	    <span></span>
+	  </div>
+	</section>
+
 	<div id="nav" class="row">
-	 	<div class="nav-item" data-href="racial-slurs">Racial Slurs</div>
-	 	<div class="nav-item" data-href="ne-food">NE Food</div>
-	 	<div class="nav-item" data-href="lifestyle">LifeStyle</div>
+	 	<div id="racial-slurs" class="nav-item" data-href="racial-slurs">
+	 		<div class="nav-text">Racial Slurs</div>
+	 	</div>
+	 	<div id="ne-food" class="nav-item" data-href="ne-food">
+	 		<div class="nav-text">NE Food</div>
+	 	</div>
+	 	<!-- <div class="nav-item" data-href="lifestyle">LifeStyle</div>
 	 	<div class="nav-item" data-href="history">History</div>
-	 	<div class="nav-item" data-href="facts">Facts</div>
+	 	<div class="nav-item" data-href="facts">Facts</div> -->
 	</div>
 
 	<div id="main" class="row"><!-- main content will come here --></div>
@@ -98,11 +99,7 @@
 			<img src="img/arrow-keys.png" alt="Arrow Key" style="width: 200px;" />
 			<p class="meta-text-14">Click or use the Left or Right Keys to proceed.</p>
 		</div>
-		<svg version="1.1" id="line-one" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-			 width="34.896px" height="26.216px" viewBox="0 0 34.896 26.216" enable-background="new 0 0 34.896 26.216" xml:space="preserve">
-		<polyline fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#2889C3" stroke-miterlimit="10" points="18.994,1.171 
-			1.994,24.171 33.619,13.796 "/>
-		</svg>
+		<img src="img/line.png" alt="" id="line-one">
 	</div>
 	<!-- <div id="share">
 		<div class="wrapper">
@@ -120,7 +117,7 @@
 	<div id="aside" class="row">
 		<div class="wrapper more-quizzes">
 			<div class="margin">
-				<h2 class="main-header">More Quizzes</h2>
+				<h2 class="main-header">Quizzes</h2>
 			</div>
 
 			<div class="quiz left">

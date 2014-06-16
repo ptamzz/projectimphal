@@ -1,15 +1,15 @@
 
 <div class="isotope home">
 	<div id="first-card" class="each-page inview" data-slidestate="true">
-		<div class="one card-text" style="left: 800px; top: 180px;  width: 700px; opacity: 0; ">
+		<div class="one card-text" style="top: 180px;  width: 1000px; opacity: 0; ">
 			<p>Let us talk about racial slurs used to address the people of North-East India.</p>
 		</div>
 	</div>
 	<div id="second-card" class="each-page" data-slidestate="true">
-		<div class="one card-text" style="left: 800px; top: 80px;  width: 750px; opacity: 0; ">
+		<div class="one card-text" style="top: 160px;  width: 1000px; opacity: 0; ">
 			<p>
-				Many people unknowingly use some of the extremely "derogatory terms" to address 
-				a person from the north-east.
+				Many people <i>unknowingly</i> and <i>unintentionally</i> use extremely 
+				"derogatory terms" to address a person from the north-east.
 			</p>
 		</div>
 	</div>
@@ -17,7 +17,7 @@
 		<div class="one card-text" style="right: 705px; top: 110px;">
 			<p>Hey, Chinky!</p>
 		</div>
-		<div class="two card-text" style="left: 650px; top: 100px;  width: 700px;  opacity: 0;">
+		<div class="two card-text" style="left: 650px; top: 100px;  width: 1000px;  opacity: 0;">
 			<p>"Chinky" is an extremely derogatory term and should be avoided.</p>
 			<p>A personal using this term can be booked and jailed for upto 5 years...</p>
 		</div>
@@ -38,17 +38,22 @@
 		</svg>
 
 		<div class="middle-container">
+			<div class="img-pan">
+				<!-- <img id="sikkim-bg" src="img/chinky/sikkim-bg.jpg" /> -->
+			</div>
+			<img id="college-girl" src="img/chinky/college-girl.png" alt="" style="position: absolute;
+left: 160px;">
 			<div id="bar"></div>
 		</div>
 	</div>
 	<div id="fourth-card" class="each-page" data-slidestate="true">
-		<div class="one card-text" style="left: 650px; top: 120px;  width: 700px;">
+		<div class="one card-text" style="left: 650px; top: 200px;  width: 700px;">
 			<p>"Momo", "Chinese" etc. are some of the terms we should avoid.</p>
 		</div>
 	</div>
 	<div id="fifth-card" class="each-page" data-slidestate="true">
-		<div class="middle-container" style="background-color: rgba(255,255,255,.8);"></div>
-		<div class="one card-text" style="left: 600px; top: 110px;  width: 700px;">
+		<div class="middle-container" style="background-color: rgba(255,255,255,.8); top: 411px; height: 333px; "></div>
+		<div class="one card-text" style="left: 600px; top: 450px;  width: 700px;">
 			<p>In fact, you should try out Momo.</p>
 			<p>It is a <a href="http://en.wikipedia.org/wiki/Momo_%28dumpling%29" target="_blank">type of dumpling</a> 
 				native to Nepal, Bhutan and parts of north-east India.</p>
