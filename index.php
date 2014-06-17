@@ -40,15 +40,14 @@
 	<!-- Facebook Share -->
 	<div id="fb-root"></div>
 	<script>
-	/* (function(d, s, id) {
+	(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
 	  js = d.createElement(s); js.id = id;
-	  js.src = "http://connect.facebook.net/en_US/sdk.js";
-	  ////connect.facebook.net/en_US/sdk.js#xfbml=1&appId=400012603426316&version=v2.0
+	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=400012603426316&version=v2.0";
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
-	*/
+
 	</script>
 	<!-- Facebook Share ends -->
 
@@ -103,7 +102,9 @@
 		</div>
 		<img src="img/line.png" alt="" id="line-one">
 	</div>
-	<!-- <div id="share">
+	
+
+<!-- 	<div id="share">
 		<div class="wrapper">
 			<h1 class="share-title">Share the result</h1>
 			<div class="display-results">
@@ -114,33 +115,42 @@
 			</div>
 		</div>
 		<div class="fb-share-button" data-href="http://localhost:8888/projectimphal/#/place-the-states" data-type="button"></div>
-	</div>
--->
+	</div> -->
+
+
 	<div id="aside" class="row">
 		<div class="wrapper more-quizzes">
 			<div class="margin">
 				<h2 class="main-header">Quiz:</h2>
 			</div>
-
-			<div class="quiz left">
-				<h4 class="quiz-name">Are you a responsible Citizen?</h4>
-				<div class="teaser-graphics"> XYXYX</div>
-			</div>
+			
 			<div class="quiz left">
 				<a href="#/quiz/place-the-states">
-					<h4 class="quiz-name">Place the States?</h4>
-					<div class="teaser-graphics"></div>
+					<h4 class="quiz-name">Where are the States?</h4>
+					<div class="teaser-graphics">
+						<img src="img/ne_boundary.png" alt="North East Map" style="width: 90%; margin-top: -38px;">
+					</div>
 				</a>
 			</div>
-			<div class="quiz left">
-				<h4 class="quiz-name">How informed are you on racially-offensive terms?</h4>
-				<div class="teaser-graphics"> XYXYX</div>
+
+			<div id="brief" class="left">
+				<p>ThinkHuman is a small experiment to help curb racial stereotyping in India.</p>
+				<p>
+					We believe bringing basic awareness will help understand India's diversity. 
+					This shall create responsible citizens of the country and can help learn to accept one another.
+				</p>
 			</div>
 		</div>
 	</div>
 
 	<div id="footer" class="row">
-		Footer
+		<div class="wrapper">
+			<p class="meta-text-white-14">
+				<strong>Disclaimer</strong>: ThinkHuman takes utmost care to provide 
+				accurate information and data. However, in case of any
+				discrepancy, kindly contact us.
+			</p>
+		</div>
 	</div>
 
 </body>

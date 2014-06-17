@@ -326,84 +326,170 @@ function decreaseStep(step){
 	console.log("Current: " + current + ", Step: " + step);
 	//What to do with each keyPress
 	switch(step){
-		case 0:
+	    case 0:
 
 			if(current == "home"){
-				$("#first-card .two").animate({ "left": 500, 'opacity': 0 }, 100, "swing", function(){
-					$("#first-card .two").css({ "left": 800 });
-				});
+				$(".arrow-key-nudge").fadeIn();
+				hideMenu();
+				animateEachOut($("#first-card .two"), $("#line-one"));
+				animateEachIn($("#first-card .one"), $("#line-one"));
 
-				$("#first-card .one").animate({ "left": 600, 'opacity': 1 }, 400, "swing",function(){
-					hideMenu();
-				});
-			}
+			} else if(current == "racial-slurs"){
+				$("#kid-one").css({ 'background-position' : 0 });	//bg-position changes
+				animateEachOut($("#second-card .one"), $("#line-one"));
+				
+				slideLeft();
+
+			} else if(current == "ne-food"){
+				$("#ngari").animate({ "left": "100%" }, 800, "swing");
+				$("#ngari").hide();
+				$("#second-card .one").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
+				$("#line-one").fadeIn();
+
+				slideLeft();
+			} 
 	       
 	        break;
+
 	    case 1:
 
 			if(current == "home"){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
-				slideLeft(); 
-
-				$("#creepy-guy").hide();
+				$("#main").css({'background' : "none"});
+				$("#college-girl").hide();
+				$("#kid-one").fadeIn();
+				$("#third-card .one").css({ 'opacity' : 0 });
+				$("#third-card .one").hide();
 				$("#line-two").hide();
-				$(".one").hide();
-				$("#kid-one").css({ 'background-position' : 0 });
-			}
+				$("#creepy-guy").hide();
+				$("#line-one").fadeIn();
+				
+				slideLeft();
+
+			} else if(current == "ne-food"){
+				$("#hawaijar").animate({ "left": "100%" }, 800, "swing");
+				$("#hawaijar").hide();
+				$("#ngari").css({ 'background-position' : '50% 90%' });
+				$("#second-card .two").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
+				$("#second-card .one").fadeIn();
+			} 
 	       
 	        break;
+
 	    case 2:
-
-			if(current == "home"){
-				//Home ends at case 1 nothing here
-			} else if (current=="racial-slurs"){
-				$(".two").hide();
-				$("#line-one").hide();
-
-				$("#line-two").fadeIn();
-				$(".one").fadeIn();
-
-
-				$("#kid-one").css({ 'background-position' : '-350px' });
-			}
-	       
-	        break;
-	    case 3:
 
 	    	if(current == "home"){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
-				$("#creepy-guy").css({ 'background-position' : "0" });
-				$(".two").fadeIn();
-				$(".three").hide();
+				$("#kid-one").css({ 'background-position' : 0 });
+				$("#college-girl").fadeIn();
+				animateEachOut($("#third-card .two"), $("#line-one"));
+				$(".middle-container").fadeIn();
+				$("#kid-one").hide();
+				//animateEachIn($("#third-card .one"), $("#line-one"));
+				$("#third-card .one").show();
+				$("#third-card .one").css({ 'opacity' : 1 });  //Not working
+				$("#line-one").hide();
+				$("#main").css({ "background-color" : "#fcf297" });
+				$("#line-two").fadeIn();
+				$("#creepy-guy").fadeIn();
 
-				$("#bar").addClass("pull-bar").removeClass("animate-bar");
-			}
+			} else if(current == "ne-food"){
+				$("#soibum").animate({ "left": "100%" }, 800, "swing");
+				$("#soibum").hide();
+				$("#second-card .three").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
+				$("#second-card .two").fadeIn();
+			} 
 	       
+	        break;
+	    case 3:
+	       if(current == "home"){
+				//Home ends at case 1 nothing here
+			} else if (current=="racial-slurs"){
+				$("#bar").removeClass("animate-bar").addClass("pull-bar");
+				$("#bar").hide();
+				animateEachOut($("#third-card .three"), $("#line-one"));
+				$(".middle-container").hide();
+				$("#creepy-guy").hide();
+				animateEachIn($("#third-card .two"), $("#line-one"));
+
+				$("#creepy-guy").css({ 'background-position' : "0", 'width' : 240 });
+
+			} else if(current == "ne-food"){
+				$("#second-card .four").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
+				$("#second-card .three").fadeIn();
+			} 
+
 	        break;
 	    case 4:
 	    	if(current == "home"){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
+				animateEachOut($("#fourth-card .one"), $("#line-one"));
+				slideLeft();
+				animateEachIn($("#third-card .three"), $("#line-one"));
 				$("#creepy-guy").fadeIn();
-				$(".three").fadeIn();
-				$(".four").hide();
-
+				$("#bar").fadeIn();
 				$("#bar").removeClass("pull-bar").addClass("animate-bar");
-			}
-
+			}  else if(current == "ne-food"){
+				animateEachOut($("#third-card .one"), $("#line-one"));
+				slideLeft();
+				$("#line-one").hide();
+				
+				$("#ngari").fadeIn();
+				$("#hawaijar").fadeIn();
+				$("#soibum").fadeIn();
+			} 
+	       
 	        break;
 	    case 5:
-		    if(current == "home"){
-					//Home ends at case 1 nothing here
+	    	if(current == "home"){
+				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
-		    	slideLeft();
+				hideMenu();
+				$("#kid-one").css({ 'background-position' : "0" });
+				animateEachOut($("#fifth-card .one"), $("#line-one"));
 
-		    }
+				slideLeft();
+			} else if(current == "ne-food"){
+				$("#eromba").animate({ "left": "100%" }, 800, "swing");
+				$("#eromba").hide();
+				$("#fourth-card .middle-container").hide();
+				animateEachOut($("#fourth-card .one"), $("#line-one"));
+				slideLeft();
 
+				$("#line-one").fadeIn();	
+			} 
+	       
 	        break;
 	    case 6:
+	    	if(current == "ne-food"){
+	    		$("#pork-bamboo-shoot").animate({ "left": "100%" }, 800, "swing");
+	    		$("#pork-bamboo-shoot").hide();
+				
+	    		animateEachOut($("#fourth-card .two"), $("#line-one"));
+	    		animateEachIn($("#fourth-card .one"), $("#line-one"));	
+			} 
+	       
+	        break;
+	    case 7:
+	    	if(current == "ne-food"){
+	    		hideMenu();
+
+	    		$("#kid-one").css({ 'background-position' : 0 });
+	    		animateEachOut($("#fifth-card .one"), $("#line-one"));
+	    		slideLeft();
+
+	    		$("#line-one").fadeOut();
+	    		$("#fourth-card .middle-container").fadeIn();
+	    		$("#eromba").fadeIn();
+	    		$("#pork-bamboo-shoot").fadeIn();		
+			} 
+	       
+	        break;
+	    case 8:
+	    	
 	       
 	        break;
 	    default:
@@ -416,6 +502,7 @@ function handleURL(){
 	console.log("handleURL");
 	reset();	//Reset DOM javascript manipulations
 	hideMenu();
+	$(document).scrollTo(0);
 
 	hash = (window.location.hash == '') ? '#/home' : window.location.hash;
 

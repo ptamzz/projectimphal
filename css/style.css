@@ -63,6 +63,8 @@ h6 { font-size: 14px; }
 
 .meta-text-14 { font-size: 14px; color: rgba(0,0,0,.6); }
 .meta-text-12 { font-size: 12px; color: rgba(0,0,0,.5); }
+.meta-text-white-14 { font-size: 14px; color: rgba(255,255,255,.5); }
+.meta-text-white-12 { font-size: 12px; color: rgba(255,255,255,.5); }
 
 p { line-height: 1.4em; }
 
@@ -191,6 +193,7 @@ body {
 
 #main { min-height: 600px; overflow: hidden; position: relative; }
 #aside { min-height: 400px; }
+#footer { background-color: #2889C3; padding: 40px 0; }
 
 .isotope { padding: 40px 0; }
 
@@ -295,8 +298,8 @@ body {
 
 .more-quizzes { padding-bottom: 50px; }
     .more-quizzes:after { content: ' '; display: block; clear: both; }
-    .more-quizzes .quiz .quiz-name { color: rgba(255,255,255,.8); font-size: 24px; width: 300px; margin: 15px 25px 20px 0; text-align: left; }
-    .teaser-graphics { width: 300px; height: 150px; background-color: #333; }
+    .more-quizzes .quiz .quiz-name { color: rgba(255,255,255,.8); font-size: 28px; width: 300px; margin: 15px 25px 20px 0; text-align: left; }
+    .teaser-graphics { width: 300px; height: 150px; background-color: #333; overflow: hidden; }
 
 .graph-area { position: relative; }
 
@@ -672,3 +675,14 @@ body {
         border-top: 100px solid red;
     }
 
+#brief {
+    width: 700px;
+    margin-left: 85px;
+    font-size: 23px;
+    line-height: 1.4em;
+    color: #F1F1F1;
+    padding-top: 15px;
+}
+    #brief p {
+        margin-bottom: 15px;
+    }
