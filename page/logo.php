@@ -1,4 +1,4 @@
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="logo_thinkhuman" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="307.444px" height="64.846px" viewBox="0 0 307.444 64.846" enable-background="new 0 0 307.444 64.846"
 	 xml:space="preserve">
 <g>

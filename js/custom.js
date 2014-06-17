@@ -7,9 +7,9 @@
 
 // JavaScript Document
 
-var ans, numTimes, len, peg = 0, count = 0, url = 'home', time, numSteps = 0, stepWidth = 0,
+var ans, numTimes, len, peg = 0, count = 0, url = 'home', time, numSteps = 0, stepWidth = 0, hideShowSpeed=700,
 	race = [], winHeight, winWidth, mainHeight, timerObject, count = 1, timerSet = false, slideState = true
-	current = "home", step = 0, menuUp = false, quiz = false;
+	current = "home", step = 0, menuUp = false, quiz = false, numSlurs = 0;
 $(function() {
 
 	//Get window Height & Width + set DOM height & widths
@@ -25,8 +25,13 @@ $(function() {
 
 
 	//Handle Basic URL hash-bang
-	handleURL();													//handles URL on first time load
-	$(window).bind('hashchange', function() { handleURL();  });		//Handles URL on hashchange
+	handleURL(true);													//handles URL on first time load
+	$(window).bind('hashchange', function() { 
+		handleURL(false);
+		if($("#welcome-msg").length){
+			$("#welcome-msg").hide();
+		}
+	});		//Handles URL on hashchange
 
 
 	//Skip Intro
@@ -55,34 +60,25 @@ $(function() {
 		step = 0;
 	});
 
+	//Load categories
+	$(document).on("click", ".arrow-keys", function() { 
+		var id = $(this).attr("id");
+		console.log("ID: " + id);
+
+		if(id == "left-arrow"){
+			handleArrowKeys(37);	//LEFT arrow
+		} else if(id == "right-arrow"){
+			handleArrowKeys(39);	//Right arrow
+		}
+	});
+
 	//Set Page & Step Count on Nav Clicks
 	$(document).on("click", ".basic li", function() {  current = $(this).data('href'); });
 
 	//Capture LEFT/RIGHT arrow press
 	$('body').keyup(function(e) {
-		console.log(e.keyCode);
-
-		if (e.keyCode == 37) { 						// LEFT arrow
-			step--;
-			decreaseStep(step);
-		} else if(e.keyCode == 39) { 				// RIGHT arrow // 27 = esc
-			step++;
-			increaseStep(step);
-		}
-
-		console.log("Kwys");
-		//Hide arrow keys
-		$("#arrowkey").fadeOut();
-		$(".arrow-key-nudge").fadeOut();
-
-		if(step <= numSteps) {
-			//Show ProgressBar
-			$("#progress").animate({ "width" : step*stepWidth });
-		}
-		
+		handleArrowKeys(e.keyCode);
 	});
-
-
 
 	$(document).one("mouseover", "#states", function() {
 		//Set timer is NOT already set
@@ -96,7 +92,46 @@ $(function() {
 		loadItem("path/home.php");
 	});
 
+	//Load categories
+	$(document).on("click", ".feedback", function() { 
+		console.log("Feedback");
+		$(this).parents(".feedback-box").fadeOut("fast", function(){
+			console.log("Feedback Inside");
+
+			$(".feedback-thanks").fadeIn();
+		});
+	});
+
 }); // jQuery $(funtion() ends
+
+function handleArrowKeys(e){
+	if (e == 37) { 						// LEFT arrow
+		step--;
+		decreaseStep(step);
+	} else if(e == 39) { 				// RIGHT arrow // 27 = esc
+		step++;
+		increaseStep(step);
+	}
+
+	step = (step < 0 ? 0 : step);	//Don't let it pass left the first slide
+
+	if(step <= numSteps) {
+		//Show ProgressBar
+		$("#progress").animate({ "width" : step*stepWidth });
+	}
+}
+
+function hideArrowKeys(){
+	//Hide arrow keys
+	$("#arrowkey").fadeOut();
+	$(".arrow-key-nudge").fadeOut();
+}
+
+function showArrowKeys(){
+	//Show arrow keys
+	$("#arrowkey").fadeIn();
+	$(".arrow-key-nudge").fadeIn();
+}
 
 function slideLeft(){
 	console.log("slideLeft()");
@@ -146,14 +181,16 @@ function increaseStep(step){
 				$(".arrow-key-nudge").hide();
 			} else if(current == "racial-slurs"){
 				slideRight();
+				$("#line-one").animate({ 'left': 240, 'opacity': 0 }, 200, 'swing');
 				animateEachIn($("#second-card .one"), $("#line-one"));
 
 				$("#kid-one").css({ 'background-position' : 0 });
+
 			} else if(current == "ne-food"){
 				slideRight();
 				$("#line-one").hide();
 
-				$("#second-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				animateEachIn($("#second-card .one"), $("#line-one"));
 				$("#ngari").show();
 				$("#ngari").animate({ "left": 0 }, 800, "swing");
 			} 
@@ -163,7 +200,9 @@ function increaseStep(step){
 	    case 2:
 
 			if(current == "home"){
-				//Home ends at case 1 nothing here
+				//Goto Racial Slurs Page
+				window.location.hash = '#/racial-slurs';
+
 			} else if (current=="racial-slurs"){
 				slideRight();
 				$("#line-one").hide();
@@ -177,14 +216,15 @@ function increaseStep(step){
 				$("#kid-one").hide();
 				$("#college-girl").fadeIn();
 
+				hideAndShowSlurs();
+
+
+
 				$("#main").css({'background-color' : "#fcf297"});
 			} else if(current == "ne-food"){
-				$("#second-card .one").hide();
-
-				$("#second-card .two").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
-				
+				animateEachOut($("#second-card .one"), $("#line-one"));
+				animateEachIn($("#second-card .two"), $("#line-one"));
 				$("#ngari").css({ 'background-position' : '-500px 90%' });
-
 				$("#hawaijar").show();
 				$("#hawaijar").animate({ "left": "35%" }, 800, "swing");
 			} 
@@ -196,6 +236,7 @@ function increaseStep(step){
 	    	if(current == "home"){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
+				$("#third-card>.one>p").hide();
 				$("#creepy-guy").hide();
 				$("#line-two").hide();
 				$("#main").css({ "background" : "none" });
@@ -210,9 +251,9 @@ function increaseStep(step){
 				animateEachIn($("#third-card .two"), $("#line-one"));
 				$("#kid-one").css({ 'background-position' : 0 });
 			} else if(current == "ne-food"){
-				$("#second-card .two").hide();
+				animateEachOut($("#second-card .two"), $("#line-one"));
+				animateEachIn($("#second-card .three"), $("#line-one"));
 
-				$("#second-card .three").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
 				$("#soibum").show();
 				$("#soibum").animate({ "left": "70%" }, 800, "swing");
 			} 
@@ -226,16 +267,28 @@ function increaseStep(step){
 				animateEachOut($("#third-card .two"), $("#line-one"));
 
 				$("#creepy-guy").fadeIn();
+				$("#creepy-guy").css({
+					'background-position' : '-855px -35px',
+					'width' : 265,
+					'bottom' : 0,
+					'top': 'auto',
+					'right' : 305,
+					'height' : 475,
+					'background-size' : 1400
+				});
+
 				$(".middle-container").fadeIn();
 
 				animateEachIn($("#third-card .three"), $("#line-one"));
 
 				$("#bar").show();
+				$(".middle-container").css({ 'top' : 0 });
+
+
 				$("#bar").removeClass("pull-bar").addClass("animate-bar");
 			} else if(current == "ne-food"){
-				$("#second-card .three").hide();
-
-				$("#second-card .four").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
+				animateEachOut($("#second-card .three"), $("#line-one"));
+				animateEachIn($("#second-card .four"), $("#line-one"));
 			} 
 
 	        break;
@@ -247,6 +300,7 @@ function increaseStep(step){
 				$("#bar").hide();
 				$("#creepy-guy").hide();
 				animateEachOut($("#third-card .three"), $("#line-one"));
+				$(".middle-container").css({ 'top' : 111 });
 
 				slideRight();
 				animateEachIn($("#fourth-card .one"), $("#line-one"));
@@ -256,10 +310,9 @@ function increaseStep(step){
 				$("#soibum").hide();
 
 				$("#line-one").fadeIn();
-				
+
 				slideRight();
 				animateEachIn($("#third-card .one"), $("#line-one"));
-				//$("#third-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
 			} 
 	       
 	        break;
@@ -268,11 +321,11 @@ function increaseStep(step){
 				//Home ends at case 1 nothing here
 			} else if (current=="racial-slurs"){
 				slideRight();
-				//$("#line-one").hide();
-				//$("#fifth-card .one").css({ 'opacity' : 1 });
+				$(".characters").hide();
+
 				animateEachIn($("#fifth-card .one"), $("#line-one"));
 				
-				$("#kid-one").css({ 'background-position' : "-1065px" });
+				$("#kid-one").css({ 'background-position' : "-734px" });
 				showMenu();
 			} else if(current == "ne-food"){
 				$("#line-one").hide();
@@ -285,12 +338,12 @@ function increaseStep(step){
 	       
 	        break;
 	    case 7:
-	    	if(current == "ne-food"){
+	    	if(current == "racial-slurs"){
+	    		//Goto ne-food Page
+				window.location.hash = '#/ne-food';
+	    	} else if(current == "ne-food"){
 	    		animateEachOut($("#fourth-card .one"), $("#line-one"));
 	    		animateEachIn($("#fourth-card .two"), $("#line-one"));
-				//$("#fourth-card .one").hide();
-				//$("#fourth-card .two").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
-				
 				$("#pork-bamboo-shoot").show();
 				$("#pork-bamboo-shoot").animate({ "left": "50%" }, 800, "swing");
 			} 
@@ -298,6 +351,8 @@ function increaseStep(step){
 	        break;
 	    case 8:
 	    	if(current == "ne-food"){
+	    		$(".characters").hide();
+
 	    		$("#line-one").fadeIn();
 	    		$("#fourth-card .middle-container").hide();
 	    		$("#eromba").hide();
@@ -305,14 +360,17 @@ function increaseStep(step){
 
 				slideRight();
 				animateEachIn($("#fifth-card .one"), $("#line-one"));
-				//$("#fifth-card .one").animate({ "left": 600, 'opacity': 1 }, 200, "swing");
-				$("#kid-one").css({ 'background-position' : '-1055px' });
+				$("#kid-one").css({ 'background-position' : '-735px' });
 
 				showMenu();
 			} 
 	       
 	        break;
 	    case 9:
+	    	if(current == "ne-food"){
+	    		//Goto ne-food Page
+				window.location.hash = '#/racial-slurs';
+			} 
 	    	
 	       
 	        break;
@@ -337,14 +395,19 @@ function decreaseStep(step){
 			} else if(current == "racial-slurs"){
 				$("#kid-one").css({ 'background-position' : 0 });	//bg-position changes
 				animateEachOut($("#second-card .one"), $("#line-one"));
+				$("#line-one").animate({ 'left': 270, 'opacity': 1 }, 700, 'swing');
 				
 				slideLeft();
 
 			} else if(current == "ne-food"){
 				$("#ngari").animate({ "left": "100%" }, 800, "swing");
 				$("#ngari").hide();
-				$("#second-card .one").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
+				
+				//$("#second-card .one").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
 				$("#line-one").fadeIn();
+				$("#second-card .one").show();
+				animateEachIn($("#second-card .one"), $("#line-one"));
+				//animateEachIn($("#second-card .two"), $("#line-one"));
 
 				slideLeft();
 			} 
@@ -366,13 +429,15 @@ function decreaseStep(step){
 				$("#line-one").fadeIn();
 				
 				slideLeft();
-
+				$("#third-card>.one>p").hide();
 			} else if(current == "ne-food"){
 				$("#hawaijar").animate({ "left": "100%" }, 800, "swing");
 				$("#hawaijar").hide();
 				$("#ngari").css({ 'background-position' : '50% 90%' });
-				$("#second-card .two").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
-				$("#second-card .one").fadeIn();
+
+				animateEachIn($("#second-card .one"), $("#line-one"));
+				animateEachOut($("#second-card .two"), $("#line-one"));
+				
 			} 
 	       
 	        break;
@@ -395,11 +460,16 @@ function decreaseStep(step){
 				$("#line-two").fadeIn();
 				$("#creepy-guy").fadeIn();
 
+
+				hideAndShowSlurs();
+
+
 			} else if(current == "ne-food"){
 				$("#soibum").animate({ "left": "100%" }, 800, "swing");
 				$("#soibum").hide();
-				$("#second-card .three").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
-				$("#second-card .two").fadeIn();
+
+				animateEachIn($("#second-card .two"), $("#line-one"));
+				animateEachOut($("#second-card .three"), $("#line-one"));
 			} 
 	       
 	        break;
@@ -413,12 +483,24 @@ function decreaseStep(step){
 				$(".middle-container").hide();
 				$("#creepy-guy").hide();
 				animateEachIn($("#third-card .two"), $("#line-one"));
+				$(".middle-container").css({ 'top' : 111 });
 
 				$("#creepy-guy").css({ 'background-position' : "0", 'width' : 240 });
 
+				$("#creepy-guy").css({
+					'background-position' : '0',
+					'width' : 189,
+					'bottom' : 'auto',
+					'top': 60,
+					'right' : 310,
+					'height' : 362,
+					'background-size' : 900
+				});
+
 			} else if(current == "ne-food"){
-				$("#second-card .four").animate({ "left": 800, 'opacity': 0 }, 200, "swing");
-				$("#second-card .three").fadeIn();
+				
+				animateEachIn($("#second-card .three"), $("#line-one"));
+				animateEachOut($("#second-card .four"), $("#line-one"));
 			} 
 
 	        break;
@@ -432,6 +514,8 @@ function decreaseStep(step){
 				$("#creepy-guy").fadeIn();
 				$("#bar").fadeIn();
 				$("#bar").removeClass("pull-bar").addClass("animate-bar");
+				$(".middle-container").css({ 'top' : 111 });
+
 			}  else if(current == "ne-food"){
 				animateEachOut($("#third-card .one"), $("#line-one"));
 				slideLeft();
@@ -459,7 +543,7 @@ function decreaseStep(step){
 				animateEachOut($("#fourth-card .one"), $("#line-one"));
 				slideLeft();
 
-				$("#line-one").fadeIn();	
+				$("#line-one").fadeIn();
 			} 
 	       
 	        break;
@@ -498,11 +582,51 @@ function decreaseStep(step){
 	}
 }
 
-function handleURL(){
+function hideAndShowSlurs(){
+
+
+	$("#third-card>.one>span:nth-child(1)").animate({
+		'opacity' : 1
+	}, hideShowSpeed, function(){
+		$("#third-card>.one>span:nth-child(1)").animate({ 'opacity' : 0 });
+		$("#third-card>.one>span:nth-child(2)").animate({
+			'opacity' : 1
+		}, hideShowSpeed, function(){
+			$("#third-card>.one>span:nth-child(2)").animate({ 'opacity' : 0 });
+			$("#third-card>.one>span:nth-child(3)").animate({
+				'opacity' : 1
+			}, hideShowSpeed, function(){
+				$("#third-card>.one>span:nth-child(3)").animate({ 'opacity' : 0 });
+				$("#third-card>.one>span:nth-child(4)").animate({
+					'opacity' : 1
+				}, hideShowSpeed, function(){
+					$("#third-card>.one>span:nth-child(4)").animate({ 'opacity' : 0 });
+					$("#third-card>.one>span:nth-child(5)").animate({
+						'opacity' : 1
+					}, hideShowSpeed, function(){
+						$("#third-card>.one>span:nth-child(5)").animate({ 'opacity' : 0 });
+						$("#third-card>.one>span:nth-child(6)").animate({
+							'opacity' : 1
+						}, hideShowSpeed, function(){
+							console.log("Fuck");
+							$("#third-card>.one>span:nth-child(6)").animate({ 'opacity' : 0 });
+							$("#third-card>.one>p").fadeIn();
+						});
+					});
+				});
+			});
+		});
+	});
+
+}
+
+function handleURL(firstTime){
 	console.log("handleURL");
-	reset();	//Reset DOM javascript manipulations
+	resetDOM();	//Reset DOM javascript manipulations
 	hideMenu();
 	$(document).scrollTo(0);
+	//$("#arrowkey").hide();
+	hideArrowKeys()
 
 	hash = (window.location.hash == '') ? '#/home' : window.location.hash;
 
@@ -516,9 +640,12 @@ function handleURL(){
 
 	//If Home, show welcome message
 	if(url[1] == 'home') {
-		$("#welcome-msg").css({ 'height' : winHeight, 'display' : 'block' });
-		getTyped();
-
+		console.log("url[1]: " + url[1]);
+		if(firstTime){
+			console.log("firstTime " + firstTime);
+			$("#welcome-msg").css({ 'height' : winHeight, 'display' : 'block' });
+			getTyped();
+		}
 		loadItem("page/home.php");
 	} else {
 		//Load specific page
@@ -534,6 +661,7 @@ function loadItem(path){
 	//var path = (type == 'general' ? "page/" : "page/quizzes/");
 
 	$.get(path, function (html) {
+		console.log("Debug point haha");
 		$("#main").html(html);
 
 		if(path == "page/quizzes/place-the-states.php"){ initiateDragDrop(); }
@@ -550,17 +678,21 @@ function loadItem(path){
 			$('.characters').fadeIn();
 			if(current != "ne-food"){
 				$('.middle-container').css({ 
-					'height' : mainHeight-350, 
-					'width' : homeWidth-300, 
+					'height' : mainHeight/2, 
+					'width' : (winWidth/2) + 200 , 
 					'left' : '50%', 
-					'margin-left' : (-1*(homeWidth-300))/2 
+					'margin-left' : (-1*(winWidth+200))/4 
 				});
 			}
-			
+
+			showArrowKeys(); //Show arrow LEFT & RIGHT control	
 		}
+
 
 		if (current == "ne-food"){
 			$(".food-pic").css({ 'width' : winWidth, 'height' : mainHeight+21, 'left' : winWidth });
+		} else if ( current == "racial-slurs"){
+			$("#bar").css({ 'height' : mainHeight+21 });
 		}
 		
 
@@ -785,11 +917,7 @@ function hideWCmsg(){
 
 		if(step <= 0){ showFirstMsg(); }
 		$('.characters').fadeIn("slow", function(){
-			setInterval(function(){
-				$(".arrow-key-nudge").fadeIn();
-				$('.arrow-key-nudge').addClass('animated bounce');
-			}, 500);
-
+			showArrowKeys();
 		});
 	});
 }
@@ -815,21 +943,38 @@ function showMenu(){
 
 	$("#nav").show();
 	$("#nav").animate({ 'width' : 300 }, 400, "swing");
-	$("#nav>div:nth-child(1)").animate({ "left": 0, "top": 0 }, 200, "swing");
-	$("#nav>div:nth-child(2)").animate({ "left": 0, "top": 0 }, 300, "swing");
-	$("#nav>div:nth-child(3)").animate({ "left": 0, "top": 0 }, 400, "swing");
-	$("#nav>div:nth-child(4)").animate({ "left": 0, "top": 0 }, 500, "swing");
-	$("#nav>div:nth-child(5)").animate({ "left": 0, "top": 0 }, 600, "swing");
+
+	if(current=="home" || current == "ne-food"){
+		console.log("aaa: " + current);
+		$("#ne-food").hide();
+
+		$("#racial-slurs").show();
+		$("#racial-slurs").animate({ "left": 0, "top": 0 }, 200, "swing");
+	} else if (current == "racial-slurs"){
+		console.log("bbb: " + current);
+
+		$("#racial-slurs").hide();
+
+		$("#ne-food").show();
+		$("#ne-food").animate({ "left": 0, "top": 0 }, 200, "swing");
+	}
+
 	menuUp = true;
 }
 
 function hideMenu(){
 	$(".menu4").removeClass("open");
-	$("#nav>div:nth-child(5)").animate({ "left": 300, "top": "-65px" }, 70, "swing");
-	$("#nav>div:nth-child(4)").animate({ "left": 300, "top": "-65px" }, 140, "swing");
-	$("#nav>div:nth-child(3)").animate({ "left": 300, "top": "-65px" }, 210, "swing");
-	$("#nav>div:nth-child(2)").animate({ "left": 300, "top": "-65px" }, 280, "swing");
-	$("#nav>div:nth-child(1)").animate({ "left": 300, "top": "-65px" }, 350, "swing", function(){
+	if(current=="home" || current == "ne-food"){
+		console.log("aaa: " + current);
+		$("#racial-slur").animate({ "left": 300, "top": 0, 'display' : "none" }, 200, "swing");
+	} else if (current == "racial-slurs"){
+		console.log("bbb: " + current);
+		//$("#racial-slur").css({ "left": -300, "top": 0, 'display' : "none" } });
+		$("#ne-food").animate({ "left": 300, "top": 0, 'display' : "none" }, 200, "swing");
+	}
+
+	$("#nav>div:nth-child(2)").animate({ "left": 300, "top": "-65px", 'display' : "none" }, 280, "swing");
+	$("#nav>div:nth-child(1)").animate({ "left": 300, "top": "-65px", 'display' : "none" }, 350, "swing", function(){
 		$("#nav").animate({ 'width' : 0 }, 400, "swing");
 		$("#nav").hide();
 	});
@@ -838,31 +983,37 @@ function hideMenu(){
 }
 
 function setMainDimension(){
-	if( 600 < mainHeight ){
+	if( mainHeight > 500 ){
+		console.log("Dimension Set");
 		$("#main").css({ 'height' : mainHeight });
 		$("#share").css({ 'height' : mainHeight+40 });
-		$("#nav").css({ 'height' : mainHeight });
-		$("#nav .nav-item").css({ 'height' : mainHeight/2 });
-		$("#nav .nav-item:before").css({ 'height' : mainHeight/2 });
-	}
+		$("#nav").css({ 'height' : mainHeight+30 });
+		$("#nav .nav-item").css({ 'height' : mainHeight+30 });
+		$("#nav .nav-item:before").css({ 'height' : mainHeight+30 });
 
+	}
+	$("#arrowkey").css({ 'top' : mainHeight+35 })
 	$("#main").css({'width' : winWidth });
 	$("#progress").css({ 'width' : 0 });
 }
 
 
-function reset(){
+function resetDOM(){
 	$("#main").css({ "background" : "none" });
 	$(".characters").hide();
 }
 
 function animateEachIn(card, e){
-	card.animate({ "left": 450, 'opacity': 1 }, 400, "swing");
-	e.animate({ 'left': 350, 'opacity': 1 }, 700, 'swing');
+	card.animate({ "left": 350, 'opacity': 1 }, 400, "swing");
+	e.animate({ 'left': 270, 'opacity': 1 }, 700, 'swing');
 }
 
 function animateEachOut(card, e){
-	card.animate({ "left": 650, 'opacity': 0 }, 400, "swing");
-	e.animate({ 'left': 300, 'opacity': 0 }, 200, 'swing');
+	card.animate({ "left": 450, 'opacity': 0 }, 400, "swing");
+	e.animate({ 'left': 240, 'opacity': 0 }, 200, 'swing');
+}
+
+function showHide(e){
+	e.animate({ 'opacity' : 1 }, 1500);
 }
 

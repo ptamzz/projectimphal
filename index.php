@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 
 <!doctype html>
 <html lang="en">
@@ -26,29 +22,20 @@
 	<script src="js/masonry-horizontal.js"></script> <!-- Isotope aditional requirement for horizontal layouting -->
 	<script src="js/jquery.mousewheel.js"></script>	<!-- Mapping vertical mouse/trackpad scrolling to horizontal scrolling -->
 
-
 	<script src="js/typed.js"></script>
 	<script src="js/custom.js"></script>
 
-	
-	<style>
-		
-	</style>
-    
 </head>
 <body>
 	<!-- Facebook Share -->
 	<div id="fb-root"></div>
-	<script>
-	(function(d, s, id) {
+	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
 	  if (d.getElementById(id)) return;
 	  js = d.createElement(s); js.id = id;
 	  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=400012603426316&version=v2.0";
 	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-
-	</script>
+	}(document, 'script', 'facebook-jssdk'));</script>
 	<!-- Facebook Share ends -->
 
 	<div id="welcome-msg" class="home" style="height: 800px;">
@@ -65,18 +52,18 @@
 	</div>
 
 	<div id="sandbar" class="row">
-		<a id="home-logo" href="#/home">
+		<a id="home-logo" href="http://localhost:8888/projectimphal/">
 			<?php require_once("page/logo.php"); ?>
 		</a>
 	</div>
-	<section id="menu"  class="row">
+	<!-- <section id="menu"  class="row">
 	  <div class="icon menu4">
 	    <span></span>
 	    <span></span>
 	    <span></span>
 	    <span></span>
 	  </div>
-	</section>
+	</section> -->
 
 	<div id="nav" class="row">
 	 	<div id="racial-slurs" class="nav-item" data-href="racial-slurs">
@@ -85,26 +72,33 @@
 	 	<div id="ne-food" class="nav-item" data-href="ne-food">
 	 		<div class="nav-text">NE Food</div>
 	 	</div>
-	 	<!-- <div class="nav-item" data-href="lifestyle">LifeStyle</div>
-	 	<div class="nav-item" data-href="history">History</div>
-	 	<div class="nav-item" data-href="facts">Facts</div> -->
 	</div>
 
 	<div id="progress" style="height: 4px; background-color: #f48914; position: relative; z-index: 100;"></div>
 	<div id="main" class="row"><!-- main content will come here --></div>
+	<div id="arrowkey">			
+		<div id="arrow-key-btn">
+			<div id="left-arrow" class="arrow-keys"></div>
+			<div id="right-arrow" class="arrow-keys"></div>
+			<div id="up-arrow" class="arrow-keys"></div>
+			<div id="down-arrow" class="arrow-keys"></div>
+		</div>
+		
+		<p class="meta-text-14" style="width: 155px; top: 15px; position: relative;">Click or use the Left or Right Keys to proceed.</p>
+	
+	</div>
+
 	<div class="characters">
 		<div id="kid-one"></div>
 		<div id="creepy-guy"></div>
-		<img id="college-girl" src="img/chinky/college-girl.png" alt="" style="top: 60px;">
-		<div id="arrowkey">
-			<img src="img/arrow-keys.png" alt="Arrow Key" style="width: 200px;" />
-			<p class="meta-text-14">Click or use the Left or Right Keys to proceed.</p>
-		</div>
-		<img src="img/line.png" alt="" id="line-one">
+		<img id="college-girl" src="img/chinky/college-girl.png" alt="" style="top: 88px;">
+		<img src="img/line.png" alt="" id="line-one" style="width: 70px;">
+
 	</div>
 	
-
-<!-- 	<div id="share">
+	<div id="fb-main" class="fb-share-button" data-href="http://thinkhuman.in" data-type="button"></div>
+	
+	<!-- <div id="share">
 		<div class="wrapper">
 			<h1 class="share-title">Share the result</h1>
 			<div class="display-results">
@@ -112,25 +106,33 @@
 			</div>
 			<div class="result-message">
 				yellopw
+				<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
+  Share on Facebook
+</a>
 			</div>
-		</div>
-		<div class="fb-share-button" data-href="http://localhost:8888/projectimphal/#/place-the-states" data-type="button"></div>
+
+			<div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+		
+		
 	</div> -->
+
+		</div>
+
 
 
 	<div id="aside" class="row">
 		<div class="wrapper more-quizzes">
 			<div class="margin">
-				<h2 class="main-header">Quiz:</h2>
+				<h2 class="main-header">Think Human</h2>
 			</div>
 			
 			<div class="quiz left">
-				<a href="#/quiz/place-the-states">
+				<!-- <a href="#/quiz/place-the-states">
 					<h4 class="quiz-name">Where are the States?</h4>
 					<div class="teaser-graphics">
 						<img src="img/ne_boundary.png" alt="North East Map" style="width: 90%; margin-top: -38px;">
 					</div>
-				</a>
+				</a> -->
 			</div>
 
 			<div id="brief" class="left">

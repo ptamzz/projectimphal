@@ -63,7 +63,11 @@
 
 				<div class="result-action">
 					<div class="score">Learn more about the North East States</div>
-					<div class="share">Share</div>
+					<div class="share">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
+  Share on Facebook
+</a>
+					</div>
 				</div>
 			</div>
 		</div>
