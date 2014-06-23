@@ -9,7 +9,7 @@
 
 var ans, numTimes, len, peg = 0, count = 0, url = 'home', time, numSteps = 0, stepWidth = 0, hideShowSpeed=700,
 	race = [], winHeight, winWidth, mainHeight, timerObject, count = 1, timerSet = false, slideState = true
-	current = "home", step = 0, menuUp = false, quiz = false, numSlurs = 0;
+	current = "home", step = 0, menuUp = false, quiz = false, numSlurs = 0, tourCount = 1;
 $(function() {
 
 	//Get window Height & Width + set DOM height & widths
@@ -106,6 +106,20 @@ $(function() {
 		e.fadeOut();
 		e.removeClass("hoverboard-down");
 
+
+		//Tracking navigation progress
+		if($(this).data("value") > 10){
+			$(this).data("value", 1);
+			tourCount = 1;
+		} else {
+			$(this).data("value", tourCount++);
+		}
+
+
+		//Update ganalytics label
+		$(this).data("label", route);
+
+
 		console.log("Route Print Out" + route);
 
 		if(route == "mumbai-siliguri") {
@@ -115,7 +129,7 @@ $(function() {
 
 
 		//Set event listerner to identify when the animation ends
-		$(document).on("animationend", "#tour-map", function() {
+		$(document).on("animationend webkitAnimationEnd oAnimationEnd", "#tour-map", function() {
 			
 			console.log("Just Inside: " + route);
 
@@ -283,10 +297,20 @@ $(function() {
 			}
 
 			if (route == "aizawl-agartala") {
+				e.data("route", "END");
 				e.html("End Tour");
 				e.fadeIn();
 			}
+
+			// console.log("About to Appear");
+			// $(".start-tour").fadeIn();
 		});
+
+			if (route == "END") {
+				console.log("Come Baby");
+				$(".tour-feedback").fadeIn();
+			}
+
 	});
 
 	//Load categories
@@ -294,6 +318,11 @@ $(function() {
 		$(this).parents(".feedback-box").fadeOut("fast", function(){
 			$(".feedback-thanks").fadeIn();
 		});
+	});
+
+	//Load categories
+	$(document).on("click", ".close", function() { 
+		$(".tour-feedback").hide();
 	});
 
 	//Google analytics Event tracking initialization

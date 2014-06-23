@@ -61,6 +61,7 @@
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<!-- Facebook Share ends -->
 
+
 	<div id="welcome-msg" class="home" style="height: 800px;">
 		<div class="skip-intro track" data-category="actions" data-action="skip-intro" data-label="skip-intro-link" style="z-index: 100;">Skip Intro</div>
 		<div class="wrapper">
@@ -75,7 +76,7 @@
 	</div>
 
 	<div id="sandbar" class="row">
-		<a id="home-logo" href="http://localhost:8888/projectimphal/" class="track" data-category="actions" data-action="goto-home" data-label="home-button">
+		<a id="home-logo" href="http://thinkhuman.in" class="track" data-category="actions" data-action="goto-home" data-label="home-button">
 			<?php require_once("page/logo.php"); ?>
 		</a>
 
