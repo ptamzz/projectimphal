@@ -50,11 +50,31 @@ right: 0;"/>
 			<div class="feedback-box">
 				<h1>Was this information new to you?</h1>
 				<div class="yes-no">
-					<div id="yes-feedback" class="feedback">Yes</div>
-					<div id="no-feedback" class="feedback">No</div>
+					<div id="yes-feedback" class="feedback track" data-category="feedback" data-action="yes-btn-clicked" data-label="racial-slurs-yes">Yes</div>
+					<div id="no-feedback" class="feedback track" data-category="feedback" data-action="no-btn-clicked" data-label="racial-slurs-no">No</div>
 				</div>
 			</div>
-			<div class="feedback-thanks">Thank you for the feedback.</div>
+			<div class="feedback-thanks">
+				<p>Thank you for the feedback.</p>
+
+
+				<div style="position: relative; top: 40px;">
+					<div class="fb-page fb-share-button track" data-category="share" data-action="fb-page-share" data-label="http://thinkhuman.in/#/racial-slurs"  data-type="button"></div>
+					<a href="https://twitter.com/share" class="twitter-page twitter-share-button track" data-category="share" data-action="twitter-page-share" data-label="http://thinkhuman.in/#/racial-slurs" data-via="ptamzz" data-hashtags="north-east">Tweet</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+					
+					<!-- Place this tag where you want the share button to render. -->
+					<div class="g-plus-page g-plus track" data-category="share" data-action="g-plus-page-share" data-label="http://thinkhuman.in/#/racial-slurs" data-action="share" data-annotation="none" ></div>
+
+					<!-- Place this tag after the last share tag. -->
+					<script type="text/javascript">
+					  (function() {
+					    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+					    po.src = 'https://apis.google.com/js/platform.js';
+					    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+					  })();
+					</script>
+				</div>
+			</div>
 		</div>
 
 	</div>

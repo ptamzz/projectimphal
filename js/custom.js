@@ -21,9 +21,6 @@ $(function() {
 
 	setMainDimension();
 
-	console.log("Heigth: " + winHeight + ", Width: " + winWidth);
-
-
 	//Handle Basic URL hash-bang
 	handleURL(true);													//handles URL on first time load
 	$(window).bind('hashchange', function() { 
@@ -39,13 +36,10 @@ $(function() {
 
 	//Show/Hide Menu
 	$(document).on("click", ".icon", function() { 
-		console.log("menu-btn-clicked");
 		if(!menuUp) { 
-			console.log("first"); 
 			$(this).addClass("open");
 			showMenu(); 
 		} else { 
-			console.log("second");
 			$(this).removeClass("open");
 			hideMenu(); 
 		}
@@ -63,7 +57,6 @@ $(function() {
 	//Load categories
 	$(document).on("click", ".arrow-keys", function() { 
 		var id = $(this).attr("id");
-		console.log("ID: " + id);
 
 		if(id == "left-arrow"){
 			handleArrowKeys(37);	//LEFT arrow
@@ -92,25 +85,238 @@ $(function() {
 		loadItem("path/home.php");
 	});
 
+	//Tour proceed button
+	$(document).on("click", ".start-tour", function() {
+
+		var interval;
+
+		//Hide all content box
+		$(".tour-states>div").fadeOut();
+		$(".tour").fadeOut();
+
+		$(".tour-wcmsg").fadeOut();
+
+		$("#tour-car").show();
+		$("#tour-car").addClass("animation-jelly");
+		$(".tour").removeClass("animation-jelly");
+
+		var e = $(this);
+
+		var route = e.data("route");	//Get Route
+		e.fadeOut();
+		e.removeClass("hoverboard-down");
+
+		console.log("Route Print Out" + route);
+
+		if(route == "mumbai-siliguri") {
+			$("#tour-map").removeClass("unscaled").addClass("scaled");
+		}
+		$("#tour-map").addClass(route);	//Animate Route
+
+
+		//Set event listerner to identify when the animation ends
+		$(document).on("animationend", "#tour-map", function() {
+			
+			console.log("Just Inside: " + route);
+
+			//Reset Route
+			if(route == "mumbai-siliguri") {
+				//e.removeData()
+				e.data("route", "siliguri-gangtok");
+				e.html("Visit Sikkim");
+
+			} else if(route == "siliguri-gangtok"){
+
+				console.log("S-G: " + route);
+			
+				e.data("route", "gangtok-guwahati");
+				e.html("Click to visit Assam");
+
+				//Content bubble animation
+				$(".content-sikkim").show();
+				$(".content-sikkim .content-one").show();
+				$(".content-sikkim .content-one").addClass("animation-jelly");
+
+				interval = setInterval(function(){
+					$(".content-sikkim .content-two").show();
+					$(".content-sikkim .content-two").addClass("animation-jelly");
+
+					clearInterval(interval);
+				}, 500);
+			} else if(route == "gangtok-guwahati"){
+				console.log("G-G: " + route);
+
+				e.data("route", "guwahati-shillong");
+				e.html("Proceed to Meghalaya");
+
+				$(".content-sikkim").hide();
+
+				//Content bubble animation
+				$(".content-assam").show();
+				$(".content-assam .content-one").show();
+				$(".content-assam .content-one").addClass("animation-jelly");
+				interval = setInterval(function(){
+					$(".content-assam .content-two").show();
+					$(".content-assam .content-two").addClass("animation-jelly");
+					clearInterval(interval);
+				}, 500);
+
+			} else if(route == "guwahati-shillong"){
+				e.data("route", "shillong-itanagar");
+				e.html("Visit Arunachal Pradesh");
+
+				$(".content-sikkim").hide();
+				$(".content-assam").hide();
+
+
+				//Content bubble animation
+				$(".content-meghalaya").show();
+				$(".content-meghalaya .content-one").show();
+				$(".content-meghalaya .content-one").addClass("animation-jelly");
+				interval = setInterval(function(){
+					$(".content-meghalaya .content-two").show();
+					$(".content-meghalaya .content-two").addClass("animation-jelly");
+					clearInterval(interval);
+				}, 500);
+			} else if(route == "shillong-itanagar"){
+				e.data("route", "itanagar-kohima");
+				e.html("Visit Nagaland");
+
+				$(".content-sikkim").hide();
+				$(".content-assam").hide();
+				$(".content-meghalaya").hide();
+
+				//Content bubble animation
+				$(".content-arunachal").show();
+				$(".content-arunachal .content-one").show();
+				$(".content-arunachal .content-one").addClass("animation-jelly");
+				interval = setInterval(function(){
+					$(".content-arunachal .content-two").show();
+					$(".content-arunachal .content-two").addClass("animation-jelly");
+					clearInterval(interval);
+				}, 500);
+			} else if(route == "itanagar-kohima"){
+				e.data("route", "kohima-imphal");
+				e.html("Click to visit Manipur");
+
+				$(".content-sikkim").hide();
+				$(".content-assam").hide();
+				$(".content-meghalaya").hide();
+				$(".content-arunachal").hide();
+
+				//Content bubble animation
+				$(".content-nagaland").show();
+				$(".content-nagaland .content-one").show();
+				$(".content-nagaland .content-one").addClass("animation-jelly");
+				interval = setInterval(function(){
+					$(".content-nagaland .content-two").show();
+					$(".content-nagaland .content-two").addClass("animation-jelly");
+					clearInterval(interval);
+				}, 500);
+			} else if(route == "kohima-imphal"){
+				e.data("route", "imphal-aizawl");
+				e.html("Click and travel to Mizoram");
+
+				$(".content-sikkim").hide();
+				$(".content-assam").hide();
+				$(".content-meghalaya").hide();
+				$(".content-arunachal").hide();
+				$(".content-nagaland").hide();
+
+
+				//Content bubble animation
+				$(".content-manipur").show();
+				$(".content-manipur .content-one").show();
+				$(".content-manipur .content-one").addClass("animation-jelly");
+				interval = setInterval(function(){
+					$(".content-manipur .content-two").show();
+					$(".content-manipur .content-two").addClass("animation-jelly");
+					clearInterval(interval);
+				}, 500);
+			} else if(route == "imphal-aizawl"){
+				e.data("route", "aizawl-agartala");
+				e.html("Proceed to our final destination, Tripura");
+
+				$(".content-sikkim").hide();
+				$(".content-assam").hide();
+				$(".content-meghalaya").hide();
+				$(".content-arunachal").hide();
+				$(".content-nagaland").hide();
+				$(".content-manipur").hide();
+				
+				
+				//Content bubble animation
+				$(".content-mizoram").show();
+				$(".content-mizoram .content-one").show();
+				$(".content-mizoram .content-one").addClass("animation-jelly");
+				interval = setInterval(function(){
+					$(".content-mizoram .content-two").show();
+					$(".content-mizoram .content-two").addClass("animation-jelly");
+					clearInterval(interval);
+				}, 500);
+			} else if(route == "aizawl-agartala"){
+				//tour Ends
+				e.data("route", null);
+
+				$(".content-sikkim").hide();
+				$(".content-assam").hide();
+				$(".content-meghalaya").hide();
+				$(".content-arunachal").hide();
+				$(".content-nagaland").hide();
+				$(".content-manipur").hide();
+				$(".content-mizoram").hide();
+
+				//Content bubble animation
+				$(".content-tripura").show();
+				$(".content-tripura .content-one").show();
+				$(".content-tripura .content-one").addClass("animation-jelly");
+				interval = setInterval(function(){
+					$(".content-tripura .content-two").show();
+					$(".content-tripura .content-two").addClass("animation-jelly");
+					clearInterval(interval);
+				}, 500);
+			}
+
+			if(route != "aizawl-agartala") {
+				e.addClass("hoverboard-down");
+				e.fadeIn();
+			}
+
+			if (route == "aizawl-agartala") {
+				e.html("End Tour");
+				e.fadeIn();
+			}
+		});
+	});
+
 	//Load categories
 	$(document).on("click", ".feedback", function() { 
-		console.log("Feedback");
 		$(this).parents(".feedback-box").fadeOut("fast", function(){
-			console.log("Feedback Inside");
-
 			$(".feedback-thanks").fadeIn();
 		});
 	});
 
+	//Google analytics Event tracking initialization
+	$('body').analyticsEventTracking();
+
+
 }); // jQuery $(funtion() ends
+
+function AnimationListener(){
+	console.log("Animation Ends");
+}
 
 function handleArrowKeys(e){
 	if (e == 37) { 						// LEFT arrow
 		step--;
 		decreaseStep(step);
+
+		$("#left-arrow").data("ga-value", step);
 	} else if(e == 39) { 				// RIGHT arrow // 27 = esc
 		step++;
 		increaseStep(step);
+
+		$("#right-arrow").data("ga-value", step);
 	}
 
 	step = (step < 0 ? 0 : step);	//Don't let it pass left the first slide
@@ -128,13 +334,15 @@ function hideArrowKeys(){
 }
 
 function showArrowKeys(){
-	//Show arrow keys
-	$("#arrowkey").fadeIn();
-	$(".arrow-key-nudge").fadeIn();
+	if(current != "the-north-east-tour"){
+		//Show arrow keys
+		$("#arrowkey").fadeIn();
+		$(".arrow-key-nudge").fadeIn();
+	}
+	
 }
 
 function slideLeft(){
-	console.log("slideLeft()");
 
 	var e = $("#main .inview");
 
@@ -147,7 +355,6 @@ function slideLeft(){
 }
 
 function slideRight(){
-	console.log("slideRight()");
 
 	var e = $("#main .inview");
 
@@ -159,8 +366,6 @@ function slideRight(){
 }
 
 function increaseStep(step){
-
-	console.log("Current: " + current + ", Step: " + step);
 
 	//What to do with each keyPress
 	switch(step){
@@ -369,7 +574,7 @@ function increaseStep(step){
 	    case 9:
 	    	if(current == "ne-food"){
 	    		//Goto ne-food Page
-				window.location.hash = '#/racial-slurs';
+				window.location.hash = '#/the-north-east-tour';
 			} 
 	    	
 	       
@@ -381,7 +586,6 @@ function increaseStep(step){
 }
 
 function decreaseStep(step){
-	console.log("Current: " + current + ", Step: " + step);
 	//What to do with each keyPress
 	switch(step){
 	    case 0:
@@ -608,7 +812,6 @@ function hideAndShowSlurs(){
 						$("#third-card>.one>span:nth-child(6)").animate({
 							'opacity' : 1
 						}, hideShowSpeed, function(){
-							console.log("Fuck");
 							$("#third-card>.one>span:nth-child(6)").animate({ 'opacity' : 0 });
 							$("#third-card>.one>p").fadeIn();
 						});
@@ -621,7 +824,6 @@ function hideAndShowSlurs(){
 }
 
 function handleURL(firstTime){
-	console.log("handleURL");
 	resetDOM();	//Reset DOM javascript manipulations
 	hideMenu();
 	$(document).scrollTo(0);
@@ -636,13 +838,10 @@ function handleURL(firstTime){
 	quiz = (url[1] == "quiz" ? true : false );	//To check whether it's a quiz or normal page
 
 	step = 0; 
-	console.log("path: " + path + ", current: " + current + ", steps: " + step );
 
 	//If Home, show welcome message
 	if(url[1] == 'home') {
-		console.log("url[1]: " + url[1]);
 		if(firstTime){
-			console.log("firstTime " + firstTime);
 			$("#welcome-msg").css({ 'height' : winHeight, 'display' : 'block' });
 			getTyped();
 		}
@@ -652,16 +851,26 @@ function handleURL(firstTime){
 		loadItem(path+".php");
 	}
 
+	/** Setting Share URLs **/
+	var shareURL = "http://thinkhuman.in/" + hash;
+
+
+	$("#fb-main").data("ga-label", shareURL );
+	$("#fb-main").data("href", shareURL );
+
+	$("#twitter-main").data("ga-label", shareURL );
+	$("#twitter-main").data("url", shareURL );
+
+	$("#g-plus-main").data("ga-label", shareURL );
+	$("#g-plus-main").data("href", shareURL );
 	
 }
 
 
 function loadItem(path){
 
-	//var path = (type == 'general' ? "page/" : "page/quizzes/");
 
 	$.get(path, function (html) {
-		console.log("Debug point haha");
 		$("#main").html(html);
 
 		if(path == "page/quizzes/place-the-states.php"){ initiateDragDrop(); }
@@ -673,7 +882,6 @@ function loadItem(path){
 
 		if(!quiz && current != "home"){
 
-			console.log("Home -- " + current);
 			$('.characters').css({ 'height' : mainHeight, 'width' : winWidth });
 			$('.characters').fadeIn();
 			if(current != "ne-food"){
@@ -693,6 +901,12 @@ function loadItem(path){
 			$(".food-pic").css({ 'width' : winWidth, 'height' : mainHeight+21, 'left' : winWidth });
 		} else if ( current == "racial-slurs"){
 			$("#bar").css({ 'height' : mainHeight+21 });
+		} 
+
+
+		if (current == "feedback" || current == "the-north-east-tour") {
+			$('.characters').hide();
+			$('#arrowkey').hide();
 		}
 		
 
@@ -726,6 +940,8 @@ function loadItem(path){
 			stepWidth = winWidth/numSteps;
 		}
 
+		//Initializing Google analytics for ajax DOM
+		$('body').analyticsEventTracking();
 	})
 		 .fail(function() {
 			$.get("page/error.php", function (html) {
@@ -775,7 +991,6 @@ function initiateDragDrop(){
 			if(item == curItem){ dropSnap(); }
 	
 			if(realCount == 8){
-				console.log("True: " + realCount );
 				clearInterval(timerObject);	//Clear timer
 				timerSet = false;
 				
@@ -908,9 +1123,6 @@ function getTyped(){
 function hideWCmsg(){
 	$("#welcome-msg").hide('blind', { 'direction' : 'vertical' }, 500, function(){
 
-		console.log("hideWCmsg");
-		//$('.row').show();
-
 		//If arrows have not been used as yet
 		$('.characters').css({ 'height' : mainHeight, 'width' : winWidth });
 		$('#menu').fadeIn();
@@ -944,19 +1156,26 @@ function showMenu(){
 	$("#nav").show();
 	$("#nav").animate({ 'width' : 300 }, 400, "swing");
 
-	if(current=="home" || current == "ne-food"){
-		console.log("aaa: " + current);
+	if(current=="home" || current == "the-north-east-tour"){
 		$("#ne-food").hide();
+		$("#racial-slurs").hide();
 
 		$("#racial-slurs").show();
 		$("#racial-slurs").animate({ "left": 0, "top": 0 }, 200, "swing");
 	} else if (current == "racial-slurs"){
-		console.log("bbb: " + current);
 
 		$("#racial-slurs").hide();
+		$("#ne-tour").hide();
 
 		$("#ne-food").show();
 		$("#ne-food").animate({ "left": 0, "top": 0 }, 200, "swing");
+	}  else if (current == "ne-food"){
+
+		$("#racial-slurs").hide();
+		$("#ne-food").hide();
+
+		$("#ne-tour").show();
+		$("#ne-tour").animate({ "left": 0, "top": 0 }, 200, "swing");
 	}
 
 	menuUp = true;
@@ -965,11 +1184,8 @@ function showMenu(){
 function hideMenu(){
 	$(".menu4").removeClass("open");
 	if(current=="home" || current == "ne-food"){
-		console.log("aaa: " + current);
 		$("#racial-slur").animate({ "left": 300, "top": 0, 'display' : "none" }, 200, "swing");
 	} else if (current == "racial-slurs"){
-		console.log("bbb: " + current);
-		//$("#racial-slur").css({ "left": -300, "top": 0, 'display' : "none" } });
 		$("#ne-food").animate({ "left": 300, "top": 0, 'display' : "none" }, 200, "swing");
 	}
 
@@ -984,15 +1200,14 @@ function hideMenu(){
 
 function setMainDimension(){
 	if( mainHeight > 500 ){
-		console.log("Dimension Set");
-		$("#main").css({ 'height' : mainHeight });
+		//$("#main").css({ 'height' : mainHeight });
 		$("#share").css({ 'height' : mainHeight+40 });
-		$("#nav").css({ 'height' : mainHeight+30 });
-		$("#nav .nav-item").css({ 'height' : mainHeight+30 });
-		$("#nav .nav-item:before").css({ 'height' : mainHeight+30 });
+		$("#nav").css({ 'height' : mainHeight+19 });
+		$("#nav .nav-item").css({ 'height' : mainHeight+19 });
+		$("#nav .nav-item:before").css({ 'height' : mainHeight+19 });
 
 	}
-	$("#arrowkey").css({ 'top' : mainHeight+35 })
+	$("#arrowkey").css({ 'top' : mainHeight+25 })
 	$("#main").css({'width' : winWidth });
 	$("#progress").css({ 'width' : 0 });
 }

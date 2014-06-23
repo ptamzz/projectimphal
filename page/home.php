@@ -1,8 +1,8 @@
 <div class="isotope home">
 	<div id="first-card" class="each-page inview" data-slidestate="true">
 		<div class="one card-text" style="top: 80px; width: 700px;">
-			<p>Hello, my name is Thoibi.</p>
-			<p>I'm from Manipur, a small state in north-east India.</p>
+			<p>Hello, my name is <span class="bold">Thoibi</span>.</p>
+			<p>I'm from <span class="bold">Manipur</span>, a small state in <span class="italicise">north-east</span> India.</p>
 
 			<p>
 				In light of racial prejudice observed in several cities of India recently,
